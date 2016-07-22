@@ -1,7 +1,6 @@
 # csgangstas
-<<<<<<< HEAD
 
-THis project is the best. GO Bucks!
+We're better than all of the other teams.
 Developers:
--Chris the Giant
+- Chris the Giant
 - Geovani Castro
