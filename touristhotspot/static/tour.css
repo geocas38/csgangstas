@@ -5,20 +5,16 @@ body {
     color: #584744;
 }
 
-h1{ /*big heading*/
-  color: #7E8986;
+h1 {
+    color: #FFF;
 }
 
-h1 strong{ /*big heading, strong*/
-  color: #EE925B;
-}
-
-h3{ /*tiny heading*/
-  color: #EE925B;
+h1 strong {
+    color: #f4511e;
 }
 
 .mainpage{
-    padding-top: 130px;
+    padding-top: 220px;
     padding-left: 300px;
     padding-right: 300px;
     text-align: center;
@@ -67,11 +63,8 @@ h3{ /*tiny heading*/
 
  COLOR PALETTE
 
-      copy color: #584744
-      "guide" big heading font color: #7E8986
-      "me" tiny heading font color: #EE925B
-
-
- http://www.colourlovers.com/palette/1613156/G_l_a_d_e
+      brown color: #584744
+      "guide" big heading font color: #FFF
+      "me" tiny heading font color: #f4511e
 
  */
