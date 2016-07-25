@@ -34,63 +34,60 @@ class SearchHandler(webapp2.RequestHandler):
         logout = {'logout':users.create_logout_url('/')}
         self.response.write(template.render())
 
-#Generates the schedule. However, in p0 we will just be printing out a list of all attractions. P1 will be generating the schedule
-# class ScheduleHandler(webapp2.RequestHandler):
-#
-#         ##post schedule
-#     def post(self):
-#
-#         template = jinja_env.get_template('results.html')
-#
-#         city = self.request.get('city')
-#         state = self.request.get('state')
-#         radius = self.request.get('radius')
-#
-#         if city, state, radius:
-#             attractions = self.fetch_attractions(city, state, radius)
-#             resturants = self.fetch_resturants(city, state, radius)
-#             variables = {
-#
-#             }
-#
-#         ##Find attractions
-#     def fetch_attractions(self, city, state, radius):
-#
-#         ##Find Resturants
-#     def fetch_resturants(self, city, state, radius ):
-#
-#         ##Utilize yelp search to find the resturants and attractions
-#     def yelp_search(self, city, state, radius ):
-#
-#
-#
-#
-# class ScheduleHandler(webapp2.RequestHandler):
-#
-#         ##post schedule
-#     def post(self):
-#
-#         template = jinja_env.get_template('results.html')
-#
-#         city = self.request.get('city')
-#         state = self.request.get('state')
-#         radius = self.request.get('radius')
-#
-#         if city, state, radius:
-#             attractions = self.fetch_attractions(city, state, radius)
-#             resturants = self.fetch_resturants(city, state, radius)
-#             variables = {
-#
-#             }
-#
-#         ##Find attractions
-#     def fetch_attractions(self, city, state, radius):
-#
-#         ##Find Resturants
-#     def fetch_resturants(self, city, state, radius ):
-#
-#         ##Utilize yelp search to find the resturants and attractions
-#     def yelp_search(self, city, state, radius ):
+class ScheduleHandler(webapp2.RequestHandler):
+
+        ##post schedule
+    def post(self):
+
+        template = jinja_env.get_template('results.html')
+
+        city = self.request.get('city')
+        state = self.request.get('state')
+        radius = self.request.get('radius')
+
+        if city, state, radius:
+            attractions = self.fetch_attractions(city, state, radius)
+            resturants = self.fetch_resturants(city, state, radius)
+            variables = {
+                'search_attraction': attraction
+                'search_resturant': resturants
+            }
+            self.response.write(template.render(variables))
+        else:
+            self.response.write("Please specify a city, state, or radius")
+
+        ##Find attractions
+    def fetch_attractions(self, city, state, radius):
+
+        data_source = urlfetch(self.yelp_search(city, state, radius))
+        results = json.loads(data_source.content)
+
+        attractions = []
+        for attract_entry in results['data']
+            attractions.append(attract_entry['attractsite'])
+
+        return attractions
+        ##Find Resturants
+    def fetch_resturants(self, city, radius ):
+
+        data_source = urlfetch(self.yelp_search(city, state, radius))
+        results = json.loads(data_source.content)
+
+        resturants = []
+        for resturant_entry in results['data']
+            resturants.append(resturant_entry['attractsite'])
+
+        return attractions
+        ##Utilize yelp search to find the resturants and attractions
+    def yelp_search(self, city, radius):
+
+        yelp_api = 'bM0VPHWh91R0g46amxYbnA'
+        base_url = 'https://api.yelp.com/v2/search?'
+        if
+        url_params= {
+            'c': city
+
+        }
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
