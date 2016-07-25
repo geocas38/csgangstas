@@ -25,7 +25,6 @@ class IntroHandler(webapp2.RequestHandler):
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
 
-
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
   ('/intro', IntroHandler)
