@@ -17,13 +17,51 @@ h3{ /*tiny heading*/
   color: #EE925B;
 }
 
-/*.mainpage{
+.mainpage{
     padding-top: 130px;
     padding-left: 300px;
     padding-right: 300px;
     text-align: center;
     align-content: center;
-}*/
+}
+
+.searchButton {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.searchButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.searchButton span:after {
+  content: ' >>';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  transition: 0.5s;
+}
+
+.searchButton:hover span {
+  padding-right: 25px;
+}
+
+.searchButton:hover span:after {
+  opacity: 1;
+  right: 0;
 
  /*
 
