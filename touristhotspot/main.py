@@ -28,7 +28,7 @@ class IntroHandler(webapp2.RequestHandler):
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
 
-#Renders the search HTML for the user to input their city, state, zip code, 
+#Renders the search HTML for the user to input their city, state, zip code,
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('search.html')
@@ -41,7 +41,7 @@ class ScheduleHandler(webapp2.RequestHandler)
 
 
 
-app = webapp2.WSGIApplication([
+]app = webapp2.WSGIApplication([
   ('/', MainHandler),
   ('/intro', IntroHandler)
 ], debug=True)
