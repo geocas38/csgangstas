@@ -36,17 +36,29 @@ class SearchHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 
 #Generates the schedule. However, in p0 we will just be printing out a list of all attractions. P1 will be generating the schedule
-class ScheduleHandler(webapp2.RequestHandler)
+class ScheduleHandler(webapp2.RequestHandler):
+
         ##post schedule
     def post(self):
 
         template = jinja_env.get_template('results.html')
 
+        city = self.request.get('city')
+        state = self.request.get('state')
+        radius = self.request.get('radius')
+
+        if city, state, radius:
+            attractions = self.fetch_attractions(city, state, radius)
+            resturants = self.fetch_resturants(city, state, radius)
+            variables = {
+            
+            }
+
         ##Find attractions
     def fetch_attractions(self, city, state, radius):
 
         ##Find Resturants
-    def fetch_returants(self, city, state, radius ):
+    def fetch_resturants(self, city, state, radius ):
 
         ##Utilize yelp search to find the resturants and attractions
     def yelp_search(self, city, state, radius ):
