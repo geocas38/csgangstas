@@ -21,7 +21,7 @@ h1 strong {
     align-content: center;
 }
 
-.searchButton {
+.button {
   display: inline-block;
   border-radius: 4px;
   background-color: #f4511e;
@@ -36,14 +36,14 @@ h1 strong {
   margin: 5px;
 }
 
-.searchButton span {
+.button span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.searchButton span:after {
+.button span:after {
   content: '>>';
   position: absolute;
   opacity: 0;
@@ -51,11 +51,11 @@ h1 strong {
   transition: 0.5s;
 }
 
-.searchButton:hover span {
+.button:hover span {
   padding-right: 25px;
 }
 
-.searchButton:hover span:after {
+.button:hover span:after {
   opacity: 1;
   right: 0;
 
