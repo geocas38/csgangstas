@@ -32,16 +32,11 @@ class IntroHandler(webapp2.RequestHandler):
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('search.html')
+        logout = {'logout':users.create_logout_url('/')}
         self.response.write(template.render())
 
-class ScheduleHandler(webapp2.RequestHandler)
-    def get(self):
-
-
-
-
-
-]app = webapp2.WSGIApplication([
+app = webapp2.WSGIApplication([
   ('/', MainHandler),
-  ('/intro', IntroHandler)
+  ('/intro', IntroHandler),
+  ('/search', SearchHandler),
 ], debug=True)
