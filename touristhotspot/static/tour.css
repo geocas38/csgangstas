@@ -1,4 +1,34 @@
 body {
     justify-content: center;
-    background-image: loginBG.jpg;
+    background-image: url("loginBG.jpg");
+    background-size: cover;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: #584744;
 }
+
+h1{ /*title*/
+  color: #7E8986;
+  shadow: 10px 10px 5px #888888;
+}
+
+h1 strong{ /*title*/
+  color: #EE925B;
+  shadow: 10px 10px 5px #888888;
+}
+
+h3{ /*title*/
+  color: #EE925B;
+}
+
+ /*
+
+ COLOR PALETTE
+
+      copy color: #584744
+      "guide" big heading font color: #7E8986
+      "me" tiny heading font color: #EE925B
+
+
+ http://www.colourlovers.com/palette/1613156/G_l_a_d_e
+
+ */
