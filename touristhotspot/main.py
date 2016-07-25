@@ -8,6 +8,12 @@ from google.appengine.api import users
 
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
+class HelloHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('tour.html')
+        logout = {'logout':users.create_logout_url('/')}
+        self.response.write(template.render())
+
 #This handler will sign the user into the website
 class MainHandler(webapp2.RequestHandler): #log-in page
     def get(self):
@@ -93,7 +99,8 @@ class ScheduleHandler(webapp2.RequestHandler):
     def yelp_search(self, city, state, radius ):
 
 app = webapp2.WSGIApplication([
-  ('/', MainHandler),
+  ('/', HelloHandler),
+  ('/login', MainHandler),
   ('/intro', IntroHandler),
   ('/search', SearchHandler),
 ], debug=True)
