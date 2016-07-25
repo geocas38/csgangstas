@@ -21,10 +21,9 @@ class MainHandler(webapp2.RequestHandler): #log-in page
 
 class IntroHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('templates/intro.html')
-#        logout = {'logout':users.create_logout_url('/')}
-        self.response.out.write(template.render())
-
+        template = jinja_environment.get_template('intro.html')
+        logout = {'logout':users.create_logout_url('/')}
+        self.response.out.write(template.render(logout))
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
