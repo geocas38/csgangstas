@@ -1,24 +1,67 @@
 body {
-    justify-content: center;
     background-image: url("loginBG.jpg");
     background-size: cover;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     color: #584744;
 }
 
-h1{ /*title*/
+h1{ /*big heading*/
   color: #7E8986;
-  shadow: 10px 10px 5px #888888;
 }
 
-h1 strong{ /*title*/
+h1 strong{ /*big heading, strong*/
   color: #EE925B;
-  shadow: 10px 10px 5px #888888;
 }
 
-h3{ /*title*/
+h3{ /*tiny heading*/
   color: #EE925B;
 }
+
+.mainpage{
+    padding-top: 130px;
+    padding-left: 300px;
+    padding-right: 300px;
+    text-align: center;
+    align-content: center;
+}
+
+.searchButton {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.searchButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.searchButton span:after {
+  content: '>>';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  transition: 0.5s;
+}
+
+.searchButton:hover span {
+  padding-right: 25px;
+}
+
+.searchButton:hover span:after {
+  opacity: 1;
+  right: 0;
 
  /*
 
