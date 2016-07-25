@@ -32,7 +32,7 @@ class SearchHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('search.html')
         logout = {'logout':users.create_logout_url('/')}
-        self.response.write(template.render())
+        self.response.write(template.render(logout))
 
 class ScheduleHandler(webapp2.RequestHandler):
 
