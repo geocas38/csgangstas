@@ -8,6 +8,12 @@ from google.appengine.api import users
 
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
+class HelloHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('tour.html')
+        logout = {'logout':users.create_logout_url('/')}
+        self.response.write(template.render())
+
 #This handler will sign the user into the website
 class MainHandler(webapp2.RequestHandler): #log-in page
     def get(self):
@@ -31,9 +37,40 @@ class IntroHandler(webapp2.RequestHandler):
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('search.html')
+        logout = {'logout':users.create_logout_url('/')}
         self.response.write(template.render())
 
 #Generates the schedule. However, in p0 we will just be printing out a list of all attractions. P1 will be generating the schedule
+# class ScheduleHandler(webapp2.RequestHandler):
+#
+#         ##post schedule
+#     def post(self):
+#
+#         template = jinja_env.get_template('results.html')
+#
+#         city = self.request.get('city')
+#         state = self.request.get('state')
+#         radius = self.request.get('radius')
+#
+#         if city, state, radius:
+#             attractions = self.fetch_attractions(city, state, radius)
+#             resturants = self.fetch_resturants(city, state, radius)
+#             variables = {
+#
+#             }
+#
+#         ##Find attractions
+#     def fetch_attractions(self, city, state, radius):
+#
+#         ##Find Resturants
+#     def fetch_resturants(self, city, state, radius ):
+#
+#         ##Utilize yelp search to find the resturants and attractions
+#     def yelp_search(self, city, state, radius ):
+#
+#
+#
+#
 class ScheduleHandler(webapp2.RequestHandler):
 
         ##post schedule
@@ -62,6 +99,8 @@ class ScheduleHandler(webapp2.RequestHandler):
     def yelp_search(self, city, state, radius ):
 
 app = webapp2.WSGIApplication([
-  ('/', MainHandler),
-  ('/intro', IntroHandler)
+  ('/', HelloHandler),
+  ('/login', MainHandler),
+  ('/intro', IntroHandler),
+  ('/search', SearchHandler),
 ], debug=True)
