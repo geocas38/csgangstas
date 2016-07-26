@@ -73,7 +73,7 @@ form {
 }
 .searchButton {
   position:relative;
-  padding:6px 15px;
+  padding:8px 15px;
   left:-8px;
   border:2px solid #207cca;
   background-color:#207cca;
@@ -82,6 +82,11 @@ form {
 .searchButton:hover  {
   background-color:#fafafa;
   color:#207cca;
+}
+::-webkit-input-placeholder { /* For WebKit browsers */
+    color:    #dd3333;
+                font-family:Helvetica Neue;
+                font-weight:bold;
 }
  /*
  COLOR PALETTE
