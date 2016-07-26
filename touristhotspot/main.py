@@ -15,10 +15,8 @@ class MainHandler(webapp2.RequestHandler): #log-in page
         if user:
             self.redirect('/intro')
         else:
-            greeting = ('<a href="%s">Sign in or register</a>.'% users.create_login_url('/'))
-
-            greeting = ('<a href="%s">Sign in or register</a>.' %
-            users.create_login_url('/'))
+            greeting = ('<a href="%s" class="button"><span>Sign In</span></a>' % users.create_login_url('/'))
+            ('<link rel="stylesheet" type="text/css" href="/static/tour.css">')
             self.response.out.write('<html><body>%s</body></html>' % greeting)
 #This handler allows the user to chose if they want to "review" or if they want to make a schedule
 class IntroHandler(webapp2.RequestHandler):
