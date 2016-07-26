@@ -1,3 +1,4 @@
+
 body {
     background-image: url("loginBG.jpg");
     background-size: cover;
@@ -5,27 +6,23 @@ body {
     color: #584744;
 }
 
-h1{ /*big heading*/
-  color: #7E8986;
+h1 {
+    color: #FFF;
 }
 
-h1 strong{ /*big heading, strong*/
-  color: #EE925B;
-}
-
-h3{ /*tiny heading*/
-  color: #EE925B;
+h1 strong {
+    color: #f4511e;
 }
 
 .mainpage{
-    padding-top: 130px;
+    padding-top: 220px;
     padding-left: 300px;
     padding-right: 300px;
     text-align: center;
     align-content: center;
 }
 
-.searchButton {
+.button {
   display: inline-block;
   border-radius: 4px;
   background-color: #f4511e;
@@ -40,14 +37,14 @@ h3{ /*tiny heading*/
   margin: 5px;
 }
 
-.searchButton span {
+.button span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.searchButton span:after {
+.button span:after {
   content: '>>';
   position: absolute;
   opacity: 0;
@@ -55,23 +52,17 @@ h3{ /*tiny heading*/
   transition: 0.5s;
 }
 
-.searchButton:hover span {
+.button:hover span {
   padding-right: 25px;
 }
 
-.searchButton:hover span:after {
+.button:hover span:after {
   opacity: 1;
   right: 0;
-
+}
  /*
-
  COLOR PALETTE
-
-      copy color: #584744
-      "guide" big heading font color: #7E8986
-      "me" tiny heading font color: #EE925B
-
-
- http://www.colourlovers.com/palette/1613156/G_l_a_d_e
-
+      brown color: #584744
+      "guide" big heading font color: #FFF
+      "me" tiny heading font color: #f4511e
  */

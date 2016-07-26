@@ -9,12 +9,6 @@ from google.appengine.api import users
 
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
-class HelloHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_environment.get_template('tour.html')
-        logout = {'logout':users.create_logout_url('/')}
-        self.response.write(template.render())
-
 #This handler will sign the user into the website
 class MainHandler(webapp2.RequestHandler): #log-in page
     def get(self):
@@ -22,11 +16,9 @@ class MainHandler(webapp2.RequestHandler): #log-in page
         if user:
             self.redirect('/intro')
         else:
-            greeting = ('<a href="%s">Sign in or register</a>.'% users.create_login_url('/'))
-
-            greeting = ('<a href="%s">Sign in or register</a>.' %
-            users.create_login_url('/'))
-            self.response.out.write('<html><body>%s</body></html>' % greeting)
+            template = jinja_environment.get_template('tour.html')
+            login = ('login':users.create_login_url('/'))
+            self.response.out.write(template.render(login))
 #This handler allows the user to chose if they want to "review" or if they want to make a schedule
 class IntroHandler(webapp2.RequestHandler):
     def get(self):
@@ -39,7 +31,7 @@ class SearchHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('settings.html')
         logout = {'logout':users.create_logout_url('/')}
-        self.response.write(template.render())
+        self.response.write(template.render(logout))
 
 class ScheduleHandler(webapp2.RequestHandler):
 
@@ -58,7 +50,6 @@ class ScheduleHandler(webapp2.RequestHandler):
             variables = {
                 'search_attraction': attractions,
                 'search_resturant': resturants
-
             }
             self.response.write(template.render(variables))
         else:
@@ -150,8 +141,7 @@ class ScheduleHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-  ('/', HelloHandler),
-  ('/login', MainHandler),
+  ('/', MainHandler),
   ('/intro', IntroHandler),
   ('/settings', SearchHandler),
   ('/schedule', ScheduleHandler)
