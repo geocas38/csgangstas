@@ -17,7 +17,7 @@ class MainHandler(webapp2.RequestHandler): #log-in page
             self.redirect('/intro')
         else:
             template = jinja_environment.get_template('tour.html')
-            login = ('login':users.create_login_url('/'))
+            login = {'login':users.create_login_url('/')}
             self.response.out.write(template.render(login))
 #This handler allows the user to chose if they want to "review" or if they want to make a schedule
 class IntroHandler(webapp2.RequestHandler):
