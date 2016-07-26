@@ -86,9 +86,18 @@ form {
 }
 ::-webkit-input-placeholder { /* For WebKit browsers */
     color:    #dd3333;
-                font-family:Helvetica Neue;
                 font-weight:bold;
 }
+
+a:link, a:visited, a:active {
+    text-decoration: none;
+}
+
+a:hover{
+  color:white;
+  text-decoration: underline;
+}
+
  /*
  COLOR PALETTE
       brown color: #584744
