@@ -4,6 +4,7 @@ body {
     background-size: cover;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     color: #584744;
+    background-repeat: no-repeat;
 }
 
 h1 {
