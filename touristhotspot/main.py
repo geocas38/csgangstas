@@ -26,6 +26,13 @@ class IntroHandler(webapp2.RequestHandler):
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
 
+#Allows the user to submit a review of a certain place.
+class ReviewHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('reviewing.html')
+        logout = {'logout':users.create_logout_url('/')}
+        self.response.out.write(template.render(logout))
+
 #Renders the search HTML for the user to input their city, state, zip code and radius in which they want to travel
 class SearchHandler(webapp2.RequestHandler):
     def get(self):

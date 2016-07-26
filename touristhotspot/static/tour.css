@@ -1,4 +1,3 @@
-
 body {
     background-image: url("loginBG.jpg");
     background-size: cover;
@@ -100,10 +99,12 @@ a:hover{
   color:white;
   text-decoration: underline;
 }
-
  /*
+
  COLOR PALETTE
+
       brown color: #584744
       "guide" big heading font color: #FFF
       "me" tiny heading font color: #f4511e
+
  */
