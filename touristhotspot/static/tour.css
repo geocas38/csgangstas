@@ -1,3 +1,4 @@
+
 body {
     background-image: url("loginBG.jpg");
     background-size: cover;
@@ -59,13 +60,10 @@ h1 strong {
 .button:hover span:after {
   opacity: 1;
   right: 0;
-
+}
  /*
-
  COLOR PALETTE
-
       brown color: #584744
       "guide" big heading font color: #FFF
       "me" tiny heading font color: #f4511e
-
  */
