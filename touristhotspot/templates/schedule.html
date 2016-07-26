@@ -1,13 +1,17 @@
 <html>
     <head>
+          <link rel="stylesheet" type="text/css" href="../static/tour.css">
         <title>Schedule</title>
     </head>
     <body>
+      <div class ="mainpage">
+        <a href= "/intro"><h1>guide<strong>me</strong></h1></a>
         <h2>Your Schedule</h2>
         <div align=center>
         {% for locations in search_attraction %}
             {{locations}}
         {% endfor %}
         </div>
+      </div>
     </body>
 </html>

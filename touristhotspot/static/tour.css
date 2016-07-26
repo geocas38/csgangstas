@@ -14,6 +14,7 @@ h1 strong {
     color: #f4511e;
 }
 
+/*general css*/
 .mainpage{
     padding-top: 220px;
     padding-left: 300px;
@@ -22,6 +23,7 @@ h1 strong {
     align-content: center;
 }
 
+/*button editing*/
 .button {
   display: inline-block;
   border-radius: 4px;
@@ -31,7 +33,7 @@ h1 strong {
   text-align: center;
   font-size: 16px;
   padding: 10px;
-  width: 100px;
+  width: auto;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -59,7 +61,44 @@ h1 strong {
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
 
+/*search bars*/
+form {
+  width: 500px;
+  margin:50px auto;
+}
+
+.search {
+  width: 300px;
+  height: 300px;
+  padding:8px 15px;
+  background:rgba(50, 50, 50, 0.2);
+  border:0px solid #dbdbdb;
+}
+.searchButton {
+  position:relative;
+  padding:8px 15px;
+  left:-8px;
+  border:2px solid #f4511e;
+  background-color:#f4511e;
+  color:#fafafa;
+}
+.searchButton:hover  {
+  background-color:#fff;
+  border:2px solid #fff;
+  color:#f4511e;
+}
+
+/*link coloring*/
+a:link, a:visited, a:active {
+    text-decoration: none;
+}
+
+a:hover{
+  color:white;
+  text-decoration: underline;
+}
  /*
 
  COLOR PALETTE
