@@ -15,8 +15,6 @@ class MainHandler(webapp2.RequestHandler): #log-in page
         if user:
             self.redirect('/intro')
         else:
-            greeting = ('<a href="%s">Sign in or register</a>.'% users.create_login_url('/'))
-
             greeting = ('<a href="%s">Sign in or register</a>.' %
             users.create_login_url('/'))
             self.response.out.write('<html><body>%s</body></html>' % greeting)
