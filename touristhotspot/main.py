@@ -89,6 +89,9 @@ class ScheduleHandler(webapp2.RequestHandler):
             self.response.write("Please specify a city, state, radius, start date, and end date")
 
         #fetches attractions from the yelp api
+
+
+
     def fetch_attractions(self, city, state, radius):
 
         data_source = self.yelp_search_attractions(city, state, radius)
@@ -100,7 +103,10 @@ class ScheduleHandler(webapp2.RequestHandler):
         for business in results.businesses:
             attractions.append(business.name)
 
-        return attractions
+        attract = self.random_shuffle(attractions)
+        return attract
+        #return attractions
+
         ##Fetches resturants from the yelp api
     def fetch_resturants(self, city, state, radius ):
 
@@ -112,9 +118,20 @@ class ScheduleHandler(webapp2.RequestHandler):
         for business in data_source.businesses:
             resturants.append(business.name)
 
-        return resturants
+        rest = self.random_shuffle(resturants)
+        return rest
+        #return resturants
 
         ##Utilize yelp search to find the resturants and attractions
+
+    def random_shuffle(self,x):
+        y = [];
+        while len(x) > 0:
+            index = random.randint(0, len(x)-1)
+            y.append(x[index])
+            del x[index]
+        return y
+
     def yelp_search_attractions(self, city, state, radius):
 
 
@@ -132,9 +149,10 @@ class ScheduleHandler(webapp2.RequestHandler):
 
 
         params = {
-            'term': 'landmarks',
+            'category_filter': 'landmarks,museums,beaches',
             'radius_filter': str(int(radius) * 1609),
-            'sort': '2'
+            'sort': '0',
+            'limit': '20'
             }
 
         data = client.search(cityState, **params)
@@ -157,7 +175,8 @@ class ScheduleHandler(webapp2.RequestHandler):
          params = {
                  'term': 'restaurants',
                  'radius_filter': str(int(radius) * 1609),
-                 'sort': '2'
+                 'sort': '0',
+                 'limit':'20'
                  }
 
          data = client.search(cityState, **params)
