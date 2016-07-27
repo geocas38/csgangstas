@@ -7,7 +7,8 @@ from yelp.client import Client
 from yelp.oauth1_authenticator import Oauth1Authenticator
 from google.appengine.api import urlfetch
 from google.appengine.api import users
-
+import random
+from datetime import datetime
 
 
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
@@ -45,6 +46,7 @@ class SearchHandler(webapp2.RequestHandler):
         logout = {'logout':users.create_logout_url('/')}
         self.response.write(template.render(logout))
 
+#Sets the schedule of the user
 class ScheduleHandler(webapp2.RequestHandler):
 
         ##post schedule
@@ -52,69 +54,64 @@ class ScheduleHandler(webapp2.RequestHandler):
 
         template = jinja_environment.get_template('schedule.html')
 
+        date_format = "%m/%d/%Y"
+
+        #gets variables from the settings html
         city = self.request.get('city')
         state = self.request.get('state')
         radius = self.request.get('radius')
+        dateStart = datetime.strptime(self.request.get('dateStart'), date_format)
+        dateEnd = datetime.strptime(self.request.get('dateEnd'), date_format)
 
-        if city and state and radius:
+        #Finds the number of days
+        dateNum = (dateEnd - dateStart)
+
+
+        #checks to see if user has inputed all relevant fields
+        if city and state and radius and dateStart and dateEnd:
             attractions = self.fetch_attractions(city, state, radius)
             resturants = self.fetch_resturants(city, state, radius)
             variables = {
                 'search_attraction': attractions,
                 'search_resturant': resturants
             }
-            self.response.write(template.render(variables))
+            self.response.write(template.render(variables)) #Renders the schedule Html
         else:
-            self.response.write("Please specify a city, state, or radius")
+            self.response.write("Please specify a city, state, radius, start date, and end date")
 
-        ##Find attractions
+        #fetches attractions from the yelp api
     def fetch_attractions(self, city, state, radius):
 
         data_source = self.yelp_search_attractions(city, state, radius)
         results = data_source
 
         attractions = []
+
+        #assisgns JSON data to a directory for attractions
         for business in results.businesses:
             attractions.append(business.name)
-        # for attract_entry in results['businesses']:
-        #     attractions.append(attract_entry['name'])
 
         return attractions
-        ##Find Resturants
+        ##Fetches resturants from the yelp api
     def fetch_resturants(self, city, state, radius ):
 
         data_source = self.yelp_search_resturants(city, state, radius)
 
-
         resturants = []
+
+        #assigns JSON data to a directory for resturants
         for business in data_source.businesses:
             resturants.append(business.name)
-        # for attract_entry in results['businesses']:
-        #     attractions.append(attract_entry['name'])
-
 
         return resturants
-    #
-    #     data_source = self.yelp_search_resturants(city, state, radius)
-    #
-    #     results = data_source
-    #
-    #     resturants = []
-    #     for resturant_entry in results:
-    #         resturants.append(resturant_entry)
-    #
-    #     return resturants
+
         ##Utilize yelp search to find the resturants and attractions
     def yelp_search_attractions(self, city, state, radius):
 
-        # params= {}
-        # params["term"] = "landmarks"
-        # params["location"] = "Seattle"
-        # params["radius_filter"] = "2000"
-        # params["limit"] = "10"
 
+        cityState = city + ',' + state
 
-
+        #Authentication keys for yelp
         auth = Oauth1Authenticator(
             consumer_key= 'bM0VPHWh91R0g46amxYbnA',
             consumer_secret='l-p2JF_V2BZSsNWGPRT7QywfoGE',
@@ -123,92 +120,39 @@ class ScheduleHandler(webapp2.RequestHandler):
                 )
 
         client = Client(auth)
-        print "My client is authenticated" + str(client)
+
 
         params = {
             'term': 'landmarks',
-            'radius_filter': str(radius),
+            'radius_filter': str(int(radius) * 1609),
             'sort': '2'
+            }
 
-
-
-                }
-
-        data = client.search((city,state) **params)
+        data = client.search(cityState, **params)
         return data
-
-         #Obtain these from Yelp's manage access page
-        # consumer_key = "bM0VPHWh91R0g46amxYbnA"
-        # consumer_secret = "l-p2JF_V2BZSsNWGPRT7QywfoGE"
-        # token = "rD8K96AXRAxiwI_R_mQwwdMUwb65Ctt_"
-        # token_secret = "ugp2wQ8Pb4tcV0Qc8pc23MlkvLw"
-
-        # session = rauth.OAuth1Session(
-        #     consumer_key = consumer_key
-        #     ,consumer_secret = consumer_secret
-        #     ,access_token = token
-        #     ,access_token_secret = token_secret)
-        # print ">>>>" + str(session)
-        # request = session.get("http://api.yelp.com/v2/search",params={})
-        # print "@@@@" + str(request)
-        #   #Transforms the JSON API response into a Python dictionary
-        # data = request.json()
-        # session.close()
-        #
-        # return data
 
 
     def yelp_search_resturants(self, city, state, radius):
+
+         cityState = city + ',' + state
 
          auth = Oauth1Authenticator(
                  consumer_key= 'bM0VPHWh91R0g46amxYbnA',
                  consumer_secret='l-p2JF_V2BZSsNWGPRT7QywfoGE',
                  token='rD8K96AXRAxiwI_R_mQwwdMUwb65Ctt_',
                  token_secret= 'ugp2wQ8Pb4tcV0Qc8pc23MlkvLw'
-                     )
+                 )
 
          client = Client(auth)
          print "My client is authenticated" + str(client)
          params = {
                  'term': 'restaurants',
-                 'radius_filter': str(radius),
+                 'radius_filter': str(int(radius) * 1609),
                  'sort': '2'
+                 }
 
-
-                     }
-
-         data = client.search((city,state) **params)
+         data = client.search(cityState, **params)
          return data
-    #
-    #     params= {}
-    #     params["term"] = "restaurant"
-    #     params["ll"] = "47.67,-123.32"
-    #     params["radius_filter"] = "100000"
-    #     params["limit"] = "20"
-    #
-    #
-    #
-    #
-    #      #Obtain these from Yelp's manage access page
-    #     consumer_key = "bM0VPHWh91R0g46amxYbnA"
-    #     consumer_secret = "l-p2JF_V2BZSsNWGPRT7QywfoGE"
-    #     token = "rD8K96AXRAxiwI_R_mQwwdMUwb65Ctt_"
-    #     token_secret = "ugp2wQ8Pb4tcV0Qc8pc23MlkvLw"
-    #
-    #     session = rauth.OAuth1Session(
-    #         consumer_key = consumer_key,
-    #         consumer_secret = consumer_secret,
-    #         access_token = token,
-    #         access_token_secret = token_secret)
-    #
-    #     request = session.get("http://api.yelp.com/v2/search",params=params)
-    #
-    #       #Transforms the JSON API response into a Python dictionary
-    #     data = request.json()
-    #     session.close()
-    #
-    #     return data
-
 
 
 app = webapp2.WSGIApplication([
