@@ -44,6 +44,10 @@ class CalendarHandler(webapp2.RequestHandler):
         userRest= userCal.get().resturants
         userDay= userCal.get().dateNum
 
+        print userAttract
+
+
+
 #Allows the user to submit a review of a certain place.
 class ReviewHandler(webapp2.RequestHandler):
     def get(self):
@@ -82,12 +86,15 @@ class ScheduleHandler(webapp2.RequestHandler):
         #checks to see if user has inputed all relevant fields
         if city and state and radius and dateStart and dateEnd:
             attractions = self.fetch_attractions(city, state, radius)
-            resturants = self.fetch_resturants(city, state, radius)
-            bizData = User(user= user.email(), attractions=attractions, resturants=resturants, dateNum=dateNum.days)
+            resturantsBreakfast = self.fetch_resturants_breakfast(city, state, radius)
+            resturantsGeneral = self.fetch_resturants_general(city, state, radius)
+            bizData = User(user= user.email(), attractions=attractions, resturantsBreakfast=resturantsBreakfast, resturantsGeneral= resturantsGeneral, Num=dateNum.days)
             bizData.put()
             variables = {
                 'search_attraction': attractions,
-                'search_resturant': resturants
+                'search_resturant_breakfast': resturantsBreakfast,
+                'search_resturant_general': resturantsGeneral,
+
             }
             self.response.write(template.render(variables)) #Renders the schedule Html
         else:
@@ -113,9 +120,9 @@ class ScheduleHandler(webapp2.RequestHandler):
         #return attractions
 
         ##Fetches resturants from the yelp api
-    def fetch_resturants(self, city, state, radius ):
+    def fetch_resturants_breakfast(self, city, state, radius ):
 
-        data_source = self.yelp_search_resturants(city, state, radius)
+        data_source = self.yelp_search_resturants_breakfast(city, state, radius)
 
         resturants = []
 
@@ -126,6 +133,21 @@ class ScheduleHandler(webapp2.RequestHandler):
         rest = self.random_shuffle(resturants)
         return rest
         #return resturants
+
+
+
+    def fetch_resturants_general(self, city, state, radius ):
+
+        data_source = self.yelp_search_resturants_general(city, state, radius)
+
+        resturants = []
+
+        #assigns JSON data to a directory for resturants
+        for business in data_source.businesses:
+            resturants.append(business.name)
+
+        rest = self.random_shuffle(resturants)
+        return rest
 
         ##Utilize yelp search to find the resturants and attractions
 
@@ -164,7 +186,30 @@ class ScheduleHandler(webapp2.RequestHandler):
         return data
 
 
-    def yelp_search_resturants(self, city, state, radius):
+    def yelp_search_resturants_breakfast(self, city, state, radius):
+
+         cityState = city + ',' + state
+
+         auth = Oauth1Authenticator(
+                 consumer_key= 'bM0VPHWh91R0g46amxYbnA',
+                 consumer_secret='l-p2JF_V2BZSsNWGPRT7QywfoGE',
+                 token='rD8K96AXRAxiwI_R_mQwwdMUwb65Ctt_',
+                 token_secret= 'ugp2wQ8Pb4tcV0Qc8pc23MlkvLw'
+                 )
+
+         client = Client(auth)
+         print "My client is authenticated" + str(client)
+         params = {
+                 'category_filter': 'food,restaurants,breakfast_brunch,',
+                 'radius_filter': str(int(radius) * 1609),
+                 'sort': '0',
+                 'limit':'5'
+                 }
+
+         data = client.search(cityState, **params)
+         return data
+
+    def yelp_search_resturants_general(self, city, state, radius):
 
          cityState = city + ',' + state
 
@@ -182,10 +227,13 @@ class ScheduleHandler(webapp2.RequestHandler):
                  'radius_filter': str(int(radius) * 1609),
                  'sort': '0',
                  'limit':'20'
+
                  }
 
          data = client.search(cityState, **params)
          return data
+
+
 
 
 app = webapp2.WSGIApplication([
