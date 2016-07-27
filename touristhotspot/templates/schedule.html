@@ -2,7 +2,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="../static/tour.css">
         <title>Schedule</title>
-    </head>
+    </head>/
     <body>
       <div class ="mainpage">
         <a href= "/intro"><h1>guide<strong>me</strong></h1></a>
@@ -16,8 +16,11 @@
           {% for resturant in search_resturant %}
             <p>  {{resturant}} </p>
           {% endfor %}
-          <p><a href="/settings" class="button"><span>Go Back</span></a></p>
+          <!-- <p> <a href="/settings" class="button"><span>Go Back</span></a></p> -->
+          <div class= "float_button"><a href="/settings" class="button"><span>Go Back</span></a><a href={{logout}} class="button"><span>Log Out</span></a></div>
         </div>
       </div>
     </body>
 </html>
+
+<!-- this is the page where it displays the best rated places -->
