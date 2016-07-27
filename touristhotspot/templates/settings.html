@@ -1,13 +1,17 @@
 <html>
     <head>
-        <title>choose your settings</title>
+      <link rel="stylesheet" type="text/css" href="../static/tour.css">
+      <title>Choose your settings</title>
     </head>
     <body>
+      <div class ="mainpage">
+      <a href= "/intro"><h1>guide<strong>me</strong></h1></a>
         <form method="get" action="schedule">
-            <p>City? <input type="text" name="city"/></p>
-            <p>State? <input type="text" name="state"/></p>
-            <p>Radius? <input type="text" name="radius"/></p>
-            <p><input type="submit"></p>
-        </form>
+            <p><input type="text" class="search" placeholder="City?" required></p>
+            <p><input type="text" class="search" placeholder="State?" required></p>
+            <p><input type="text" class="search" placeholder="Radius?" required></p>
+            <p><input type="submit"></p></form>
+            <a href={{logout}} class="button"><span>Log Out</span></a>
+      </div>
     </body>
 </html>
