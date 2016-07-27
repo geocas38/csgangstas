@@ -39,6 +39,11 @@ class CalendarHandler(webapp2.RequestHandler):
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
 
+        userCal = User.query().filter(User.user == users.get_current_user().email())
+        userAttract= userCal.get().attractions
+        userRest= userCal.get().resturants
+        userDay= userCal.get().dateNum
+
 #Allows the user to submit a review of a certain place.
 class ReviewHandler(webapp2.RequestHandler):
     def get(self):
