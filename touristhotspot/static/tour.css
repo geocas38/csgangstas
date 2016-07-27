@@ -10,91 +10,6 @@ h1 {
 h1 strong {
     color: #f4511e;
 }
-
-/*general css*/
-.mainpage{
-    padding-top: 220px;
-    padding-left: 300px;
-    padding-right: 300px;
-    text-align: center;
-    align-content: center;
-    z-index: 1;
-    position: relative;
-}
-
-/*button editing*/
-.button {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #f4511e;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 16px;
-  padding: 10px;
-  width: auto;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '>>';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-.float_button {
-  position: fixed;
-  float: right;
-  bottom: 0px;
-  right: 0px;
-  padding: 20px;
-}
-
-/*search bars*/
-form {
-  width: 500px;
-  margin:50px auto;
-}
-
-.search {
-  width: 300px;
-  height: 30px;
-  padding: 8px 15px;
-  background:rgba(50, 50, 50, 0.5);
-  border: 0px solid #000;
-  font-size: 15px;
-}
-
-/*link coloring*/
-a:link, a:visited, a:active {
-    text-decoration: none;
-}
-
-a:hover{
-  color:white;
-  text-decoration: underline;
-}
-
 /*slideshowstuff*/
 
 .cb-slideshow,
@@ -151,6 +66,90 @@ a:hover{
     17% { opacity: 1 }
     25% { opacity: 0 }
     100% { opacity: 0 }
+}
+
+/*general css*/
+.mainpage{
+    padding: auto;
+    text-align: center;
+    align-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*button editing*/
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  width: auto;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '>>';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.float_button {
+  position: fixed;
+  float: right;
+  bottom: 0px;
+  right: 0px;
+  padding: 10px;
+}
+
+/*search bars*/
+form {
+  width: 500px;
+  margin:50px auto;
+}
+
+.search {
+  width: 300px;
+  height: 30px;
+  padding: 8px 15px;
+  background:rgba(50, 50, 50, 0.5);
+  border: 0px solid #000;
+  font-size: 15px;
+}
+
+/*link coloring*/
+a:link, a:visited, a:active {
+    text-decoration: none;
+}
+
+a:hover{
+  color:white;
+  text-decoration: underline;
 }
 
  /*
