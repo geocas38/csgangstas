@@ -44,6 +44,14 @@ class CalendarHandler(webapp2.RequestHandler):
         userRest= userCal.get().resturants
         userDay= userCal.get().dateNum
 
+        variables = {
+        'attractions': userAttract,
+        'resturants' : userRest
+        }
+
+        self.response.write(template.render(variables))
+
+        print userAttract
 #Allows the user to submit a review of a certain place.
 class ReviewHandler(webapp2.RequestHandler):
     def get(self):
