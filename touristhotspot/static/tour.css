@@ -1,7 +1,4 @@
 body {
-    background-image: url("loginBG.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     color: #584744;
 }
@@ -67,6 +64,7 @@ h1 strong {
 
 .float_button {
   position: fixed;
+  float: right;
   bottom: 0px;
   right: 0px;
   padding: 20px;
@@ -95,6 +93,64 @@ a:link, a:visited, a:active {
 a:hover{
   color:white;
   text-decoration: underline;
+}
+
+/*slideshowstuff*/
+
+.cb-slideshow,
+.cb-slideshow:after {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: -16px;
+    left: -1px;
+    z-index: 0;
+}
+.cb-slideshow li span {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 30s linear infinite 0s;
+}
+.cb-slideshow:after {
+    content: '';
+    background: url("grey.jpg");
+    background-size: cover;
+    top: -1px;
+    z-index: -1;
+}
+.cb-slideshow li:nth-child(1) span {
+    background-image: url("loginBG.jpg");
+}
+.cb-slideshow li:nth-child(2) span {
+    background-image: url("background1.jpg");
+    animation-delay: 6s;
+}
+.cb-slideshow li:nth-child(3) span {
+    background-image: url("background2.jpg");
+    animation-delay: 12s;
+}
+.cb-slideshow li:nth-child(4) span {
+    background-image: url("background3.jpg");
+    animation-delay: 18s;
+}
+.cb-slideshow li:nth-child(5) span {
+    background-image: url("background4.jpg");
+    animation-delay: 24s;
+}
+@keyframes imageAnimation {
+    0% { opacity: 0; animation-timing-function: ease-in; }
+    8% { opacity: 1; animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
 }
 
  /*
