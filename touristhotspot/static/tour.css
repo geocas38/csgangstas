@@ -1,9 +1,9 @@
 body {
     background-image: url("loginBG.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     color: #584744;
-    background-repeat: no-repeat;
 }
 
 h1 {
@@ -21,6 +21,8 @@ h1 strong {
     padding-right: 300px;
     text-align: center;
     align-content: center;
+    z-index: 1;
+    position: relative;
 }
 
 /*button editing*/
@@ -77,19 +79,6 @@ form {
   border: 0px solid #000;
   font-size: 15px;
 }
-.searchButton {
-  position:relative;
-  padding:8px 15px;
-  left:-8px;
-  border:2px solid #f4511e;
-  background-color:#f4511e;
-  color: #fff;
-}
-.searchButton:hover  {
-  background-color:#fff;
-  border:2px solid #fff;
-  color: #f4511e;
-}
 
 /*link coloring*/
 a:link, a:visited, a:active {
@@ -100,6 +89,7 @@ a:hover{
   color:white;
   text-decoration: underline;
 }
+
  /*
 
  COLOR PALETTE

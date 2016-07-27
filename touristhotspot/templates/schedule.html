@@ -1,6 +1,6 @@
 <html>
     <head>
-          <link rel="stylesheet" type="text/css" href="../static/tour.css">
+        <link rel="stylesheet" type="text/css" href="../static/tour.css">
         <title>Schedule</title>
     </head>
     <body>
@@ -9,13 +9,14 @@
         <h2>Your Schedule</h2>
         <div align=center>
           <h3>Attractions</h3>
-        {% for locations in search_attraction %}
+          {% for locations in search_attraction %}
             <p>  {{locations}} </p>
-        {% endfor %}
+          {% endfor %}
         <br><h3> Restaurants </h3>
-        {% for resturant in search_resturant %}
+          {% for resturant in search_resturant %}
             <p>  {{resturant}} </p>
-        {% endfor %}
+          {% endfor %}
+          <p><a href="/settings" class="button"><span>Go Back</span></a></p>
         </div>
       </div>
     </body>
