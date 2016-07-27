@@ -65,6 +65,11 @@ h1 strong {
   right: 0;
 }
 
+.float_button {
+  position: absolute;
+  right: 0px;
+}
+
 /*search bars*/
 form {
   width: 500px;
