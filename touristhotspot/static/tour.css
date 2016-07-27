@@ -66,8 +66,10 @@ h1 strong {
 }
 
 .float_button {
-  position: absolute;
+  position: fixed;
+  bottom: 0px;
   right: 0px;
+  padding: 20px;
 }
 
 /*search bars*/
