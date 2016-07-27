@@ -5,8 +5,13 @@
     <body>
         <h2>Your Schedule</h2>
         <div align=center>
+          <h3>Attractions</h3>
         {% for locations in search_attraction %}
-            {{locations}}
+            <p>  {{locations}} </p>
+        {% endfor %}
+        <br><h3> Restaurants </h3>
+        {% for resturant in search_resturant %}
+            <p>  {{resturant}} </p>
         {% endfor %}
         </div>
     </body>
