@@ -9,6 +9,7 @@ from google.appengine.api import urlfetch
 from google.appengine.api import users
 import random
 from datetime import datetime
+from data import User
 
 
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
@@ -21,7 +22,6 @@ class MainHandler(webapp2.RequestHandler): #log-in page
             self.redirect('/intro')
         else:
             template = jinja_environment.get_template('tour.html')
-        #    login = ('login':users.create_login_url('/'))
             login = {'login':users.create_login_url('/')}
             self.response.out.write(template.render(login))
 
@@ -53,7 +53,7 @@ class ScheduleHandler(webapp2.RequestHandler):
     def get(self):
 
         template = jinja_environment.get_template('schedule.html')
-
+        user = users.get_current_user()
         date_format = "%m/%d/%Y"
 
         #gets variables from the settings html
@@ -71,6 +71,8 @@ class ScheduleHandler(webapp2.RequestHandler):
         if city and state and radius and dateStart and dateEnd:
             attractions = self.fetch_attractions(city, state, radius)
             resturants = self.fetch_resturants(city, state, radius)
+            bizData = User(user= user.email(), attractions=attractions, resturants=resturants, dateNum=dateNum.days)
+            bizData.put()
             variables = {
                 'search_attraction': attractions,
                 'search_resturant': resturants
