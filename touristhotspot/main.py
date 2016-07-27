@@ -32,6 +32,13 @@ class IntroHandler(webapp2.RequestHandler):
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
 
+#Allows the user to access
+class CalendarHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('calendar.html')
+        logout = {'logout':users.create_logout_url('/')}
+        self.response.out.write(template.render(logout))
+
 #Allows the user to submit a review of a certain place.
 class ReviewHandler(webapp2.RequestHandler):
     def get(self):
@@ -179,6 +186,7 @@ class ScheduleHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
   ('/intro', IntroHandler),
+  ('/calendar', CalendarHandler),
   ('/settings', SearchHandler),
   ('/schedule', ScheduleHandler)
 ], debug=True)
