@@ -20,11 +20,8 @@ class MainHandler(webapp2.RequestHandler): #log-in page
             self.redirect('/intro')
         else:
             template = jinja_environment.get_template('tour.html')
-<<<<<<< HEAD
         #    login = ('login':users.create_login_url('/'))
-=======
             login = {'login':users.create_login_url('/')}
->>>>>>> ed2c6e970d121c4510597a09f3cb59178b33064a
             self.response.out.write(template.render(login))
 #This handler allows the user to chose if they want to "review" or if they want to make a schedule
 class IntroHandler(webapp2.RequestHandler):
@@ -133,9 +130,10 @@ class ScheduleHandler(webapp2.RequestHandler):
             'sort': '2'
 
 
+
                 }
 
-        data = client.search(city, **params)
+        data = client.search((city,state) **params)
         return data
 
          #Obtain these from Yelp's manage access page
@@ -178,7 +176,7 @@ class ScheduleHandler(webapp2.RequestHandler):
 
                      }
 
-         data = client.search(city, **params)
+         data = client.search((city,state) **params)
          return data
     #
     #     params= {}
