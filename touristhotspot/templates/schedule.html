@@ -1,34 +1,35 @@
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="../static/tour.css">
-        <title>Schedule</title>
-    </head>/
-    <body>
+<head>
+      <link rel="stylesheet" type="text/css" href="../static/tour.css">
+      <title>Schedule</title>
+</head>
+<body>
       <ul class="cb-slideshow" style="list-style-type: none;">
-        <li style="list-style-type: none;"><span>Image 01</span></li>
-        <li style="list-style-type: none;"><span>Image 02 </span></li>
-        <li style="list-style-type: none;"><span>Image 03</span></li>
-        <li style="list-style-type: none;"><span>Image 04</span></li>
-        <li style="list-style-type: none;"><span>Image 05</span></li>
+          <li style="list-style-type: none;"><span>Image 01</span></li>
+          <li style="list-style-type: none;"><span>Image 02 </span></li>
+          <li style="list-style-type: none;"><span>Image 03</span></li>
+          <li style="list-style-type: none;"><span>Image 04</span></li>
+          <li style="list-style-type: none;"><span>Image 05</span></li>
       </ul>
       <div class ="mainpage">
         <a href= "/intro"><h1>guide<strong>me</strong></h1></a>
         <h2>Your Schedule</h2>
         <div align=center>
           <h3>Attractions</h3>
-          {% for locations in search_attraction %}
-            <p>  {{locations}} </p>
-          {% endfor %}
-        <br><h3> Restaurants </h3>
-          {% for resturant in search_resturant %}
-            <p>  {{resturant}} </p>
-          {% endfor %}
+              {% for locations in search_attraction %}
+                  <p>  {{locations}} </p>
+              {% endfor %}
+          <br>
+          <h3> Restaurants </h3>
+              {% for resturant in search_resturant %}
+                  <p>  {{resturant}} </p>
+              {% endfor %}
           <!-- <p> <a href="/settings" class="button"><span>Go Back</span></a></p> -->
 
       </div>
     </div>
     <div class= "float_button"><a href="/settings" class="button"><span>Go Back</span></a></div>
-    </body>
+</body>
 </html>
 
 <!-- this is the page where it displays the best rated places -->

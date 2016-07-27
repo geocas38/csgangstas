@@ -70,13 +70,9 @@ h1 strong {
 
 /*general css*/
 .mainpage{
-    padding: auto;
     text-align: center;
     align-content: center;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 /*button editing*/
