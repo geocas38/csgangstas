@@ -35,7 +35,7 @@ class IntroHandler(webapp2.RequestHandler):
 #Allows the user to access their previous schedule
 class CalendarHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('calendar.html')
+        template = jinja_environment.get_template('schedule.html')
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
         data = User.query().filter(User.user == users.get_current_user().email())
@@ -43,19 +43,31 @@ class CalendarHandler(webapp2.RequestHandler):
 #pulls list out of Datastore
 
         userCal = User.query().filter(User.user == users.get_current_user().email())
-        userAttract= userCal.get().attractions
-        userRestBreak= userCal.get().resturantsBreakfast
-        userRestGeneral= userCal.get().resturantsGeneral
+        attractions= userCal.get().attractions
+        resturantsBreakfast= userCal.get().resturantsBreakfast
+        resturantsGeneral= userCal.get().resturantsGeneral
         userDay= userCal.get().dateNum
-        userCity= userCal.get().city
-        userState= userCal.get().state
+        city= userCal.get().city
+        state= userCal.get().state
 
         variables = {
-        'attractions': userAttract,
-        'resturantsBreakfast' : userRestBreak,
-        'resturantsGeneral': userRestGeneral,
-        'city': userCity,
-        'state': userState
+        'ad1p1': attractions[0:3],
+        'ad1p2': attractions[3:6],
+        'ad2p1': attractions[6:9],
+        'ad2p2': attractions[9:12],
+        'ad3p1': attractions[12:15],
+        'ad3p2': attractions[15:18],
+        'rd1b1': resturantsBreakfast[0:1],
+        'rd2b2': resturantsBreakfast[1:2],
+        'rd2b3': resturantsBreakfast[2:3],
+        'rd1g1': resturantsGeneral[0:1],
+        'rd1g2': resturantsGeneral[1:2],
+        'rd2g3': resturantsGeneral[2:3],
+        'rd2g4': resturantsGeneral[3:4],
+        'rd3g5': resturantsGeneral[4:5],
+        'rd3g6': resturantsGeneral[5:6],
+        'search_city': city,
+        'search_state': state
         }
         self.response.write(template.render(variables))
 

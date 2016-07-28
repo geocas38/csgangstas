@@ -230,14 +230,14 @@ if it doesn't work, try position: relative and top:100%
   color: white;
 }
 #rightcol{
-  width: 46%;
+  width: 54%;
   display: inline-block;;
   float: left;
   position: absolute;
   padding-left: 28px;
   padding-right: 28px;
   padding-bottom: 28px;
-  margin-left: 690px;
+  margin-left: 611px;
   background-color: black;
   z-index: 1;
   color: white;
