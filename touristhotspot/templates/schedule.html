@@ -20,10 +20,18 @@
                   <p>  {{locations}} </p>
               {% endfor %}
           <br>
-          <h3> Restaurants </h3>
-              {% for resturant in search_resturant %}
+          <h3> Breakfast Restaurants </h3>
+              {% for resturant in search_resturant_breakfast %}
                   <p>  {{resturant}} </p>
               {% endfor %}
+              <br>
+          <h3>Lunch and Dinner Restaurants</h3>
+              {% for locations in search_attraction_general %}
+                  <p>  {{locations}} </p>
+              {% endfor %}
+
+          <!-- <p> <a href="/settings" class="button"><span>Go Back</span></a></p> -->
+
       </div>
     </div>
     <div class= "float_button"><a href="/settings" class="button"><span>Go Back</span></a></div>

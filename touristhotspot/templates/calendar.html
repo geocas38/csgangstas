@@ -21,12 +21,15 @@
       <p>{{attraction}}</p>
       {%endfor%}
       <br>
-      <h3>Restaurants</h3>
-      <p>
-      {% for resturant in resturants %}
+      <h3>Breakfast Restaurants</h3>
+      {% for resturant in resturantsBreakfast %}
       <p>{{resturant}}</p>
       {%endfor%}
-    </p>
+      <br>
+      <h3>Lunch and Dinner Restaurants</h3>
+      {% for resturant in resturantsGeneral %}
+      <p>{{resturant}}</p>
+      {%endfor%}
     <div class= "float_button"><a href="/intro" class="button"><span>Go Back</span></a></div>
 </body>
 </html>
