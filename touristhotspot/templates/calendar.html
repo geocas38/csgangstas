@@ -31,12 +31,8 @@
       <p>{{resturant}}</p>
       {%endfor%}
     </div>
+    <div class= "float_button"><a href="/intro" class="button"><span>Go Back</span></a></div>
 </body>
 </html>
-
-userCal = User.query().filter(User.user == users.get_current_user().email())
-userAttract= userCal.get().attractions
-userRest= userCal.get().resturants
-userDay= userCal.get().dateNum
 
 <!-- this is the page where it displays the calendar. -->
