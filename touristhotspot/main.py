@@ -35,7 +35,7 @@ class IntroHandler(webapp2.RequestHandler):
 #Allows the user to access their previous schedule
 class CalendarHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('calendar.html')
+        template = jinja_environment.get_template('schedule.html')
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
         #user = User.query().filter().keys
@@ -47,25 +47,34 @@ class CalendarHandler(webapp2.RequestHandler):
         if userCal.get() == None:
             self.redirect('/intro')
         else:
-            userAttract= userCal.get().attractions
-            userRestBreak= userCal.get().resturantsBreakfast
-            userRestGeneral= userCal.get().resturantsGeneral
+
+            attractions= userCal.get().attractions
+            resturantsBreakfast= userCal.get().resturantsBreakfast
+            resturantsGeneral= userCal.get().resturantsGeneral
             userDay= userCal.get().dateNum
-            userCity= userCal.get().city
-            userState= userCal.get().state
+            city= userCal.get().city
+            state= userCal.get().state
 
             variables = {
-            'attractions': userAttract,
-            'resturantsBreakfast' : userRestBreak,
-            'resturantsGeneral': userRestGeneral,
-            'city': userCity,
-            'state': userState
+            'ad1p1': attractions[0:3],
+            'ad1p2': attractions[3:6],
+            'ad2p1': attractions[6:9],
+            'ad2p2': attractions[9:12],
+            'ad3p1': attractions[12:15],
+            'ad3p2': attractions[15:18],
+            'rd1b1': resturantsBreakfast[0:1],
+            'rd2b2': resturantsBreakfast[1:2],
+            'rd2b3': resturantsBreakfast[2:3],
+            'rd1g1': resturantsGeneral[0:1],
+            'rd1g2': resturantsGeneral[1:2],
+            'rd2g3': resturantsGeneral[2:3],
+            'rd2g4': resturantsGeneral[3:4],
+            'rd3g5': resturantsGeneral[4:5],
+            'rd3g6': resturantsGeneral[5:6],
+            'search_city': city,
+            'search_state': state
             }
             self.response.write(template.render(variables))
-
-
-
-
 
 #Allows the user to submit a review of a certain place.
 class ReviewHandler(webapp2.RequestHandler):
@@ -101,7 +110,6 @@ class ScheduleHandler(webapp2.RequestHandler):
         #Finds the number of days
         dateNum = (dateEnd - dateStart)
 
-
         #checks to see if user has inputed all relevant fields
         if city and state and radius and dateStart and dateEnd:
             #Fetch calls
@@ -110,7 +118,6 @@ class ScheduleHandler(webapp2.RequestHandler):
             resturantsGeneral = self.fetch_resturants_general(city, state, radius)
 
             #Datastore
-
 
         # if User.query().filter(User.user == users.get_current_user().email()):
         #         userCal.delete()
@@ -141,7 +148,6 @@ class ScheduleHandler(webapp2.RequestHandler):
             self.response.write("Please specify a city, state, radius, start date, and end date")
 
         #fetches attractions from the yelp api
-
 
 #Calls the yelp search function which accesses the yelp api and returns attractions. This function then puts those attractions into a list of strings
     def fetch_attractions(self, city, state, radius):
@@ -205,7 +211,6 @@ class ScheduleHandler(webapp2.RequestHandler):
 #Finds attractions for the tourist
     def yelp_search_attractions(self, city, state, radius):
 
-
         cityState = city + ',' + state
 
         #Authentication keys for yelp
@@ -215,7 +220,6 @@ class ScheduleHandler(webapp2.RequestHandler):
             token='rD8K96AXRAxiwI_R_mQwwdMUwb65Ctt_',
             token_secret= 'ugp2wQ8Pb4tcV0Qc8pc23MlkvLw'
                 )
-
         client = Client(auth)
 
         params = {
