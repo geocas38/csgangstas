@@ -38,26 +38,34 @@ class CalendarHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('calendar.html')
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
-        data = User.query().filter(User.user == users.get_current_user().email())
-        print str(data) + '!!!!!!!!!!!!!!!!!!!!!!'
+        #user = User.query().filter().keys
+        #print user
 #pulls list out of Datastore
 
-        userCal = User.query().filter(User.user == users.get_current_user().email())
-        userAttract= userCal.get().attractions
-        userRestBreak= userCal.get().resturantsBreakfast
-        userRestGeneral= userCal.get().resturantsGeneral
-        userDay= userCal.get().dateNum
-        userCity= userCal.get().city
-        userState= userCal.get().state
 
-        variables = {
-        'attractions': userAttract,
-        'resturantsBreakfast' : userRestBreak,
-        'resturantsGeneral': userRestGeneral,
-        'city': userCity,
-        'state': userState
-        }
-        self.response.write(template.render(variables))
+        userCal = User.query().filter(User.user == users.get_current_user().email())
+        if userCal.get() == None:
+            self.redirect('/intro')
+        else:
+            userAttract= userCal.get().attractions
+            userRestBreak= userCal.get().resturantsBreakfast
+            userRestGeneral= userCal.get().resturantsGeneral
+            userDay= userCal.get().dateNum
+            userCity= userCal.get().city
+            userState= userCal.get().state
+
+            variables = {
+            'attractions': userAttract,
+            'resturantsBreakfast' : userRestBreak,
+            'resturantsGeneral': userRestGeneral,
+            'city': userCity,
+            'state': userState
+            }
+            self.response.write(template.render(variables))
+
+
+
+
 
 #Allows the user to submit a review of a certain place.
 class ReviewHandler(webapp2.RequestHandler):
@@ -84,8 +92,8 @@ class ScheduleHandler(webapp2.RequestHandler):
         date_format = "%m/%d/%Y"
 
         #gets variables from the settings html
-        city = self.request.get('city')
-        state = self.request.get('state')
+        city = self.request.get('city').lower().capitalize()
+        state = self.request.get('state').lower().capitalize()
         radius = self.request.get('radius')
         dateStart = datetime.strptime(self.request.get('dateStart'), date_format)
         dateEnd = datetime.strptime(self.request.get('dateEnd'), date_format)
@@ -107,7 +115,7 @@ class ScheduleHandler(webapp2.RequestHandler):
         # if User.query().filter(User.user == users.get_current_user().email()):
         #         userCal.delete()
             bizData = User(state = state, city = city, user= user.email(), attractions=attractions, resturantsBreakfast=resturantsBreakfast, resturantsGeneral= resturantsGeneral, dateNum=dateNum.days, id=user.email())
-            bizData.put()
+            #bizData.put()
             variables = {
                 'ad1p1': attractions[0:3],
                 'ad1p2': attractions[3:6],
@@ -127,7 +135,8 @@ class ScheduleHandler(webapp2.RequestHandler):
                 'search_city': city,
                 'search_state': state
             }
-            self.response.write(template.render(variables)) #Renders the schedule Html
+            self.response.write(template.render(variables))
+            bizData.put() #Renders the schedule Html
         else:
             self.response.write("Please specify a city, state, radius, start date, and end date")
 
