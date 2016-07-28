@@ -32,26 +32,29 @@ class IntroHandler(webapp2.RequestHandler):
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
 
-#Allows the user to access
+#Allows the user to access their previous schedule
 class CalendarHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('calendar.html')
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
 
+#pulls list out of Datastore
         userCal = User.query().filter(User.user == users.get_current_user().email())
         userAttract= userCal.get().attractions
-        userRest= userCal.get().resturants
+        userRestBreak= userCal.get().resturantsBreakfast
+        userRestGeneral= userCal.get().resturantsGeneral
         userDay= userCal.get().dateNum
 
         variables = {
         'attractions': userAttract,
-        'resturants' : userRest
+        'resturantsBreakfast' : userRestBreak,
+        'resturantsGeneral': userRestGeneral
+
         }
 
         self.response.write(template.render(variables))
 
-        print userAttract
 #Allows the user to submit a review of a certain place.
 class ReviewHandler(webapp2.RequestHandler):
     def get(self):
@@ -89,13 +92,23 @@ class ScheduleHandler(webapp2.RequestHandler):
 
         #checks to see if user has inputed all relevant fields
         if city and state and radius and dateStart and dateEnd:
+            #Fetch calls
             attractions = self.fetch_attractions(city, state, radius)
-            resturants = self.fetch_resturants(city, state, radius)
-            bizData = User(user= user.email(), attractions=attractions, resturants=resturants, dateNum=dateNum.days)
+            resturantsBreakfast = self.fetch_resturants_breakfast(city, state, radius)
+            resturantsGeneral = self.fetch_resturants_general(city, state, radius)
+
+            #Datastore
+
+
+        # if User.query().filter(User.user == users.get_current_user().email()):
+        #         userCal.delete()
+            bizData = User(user= user.email(), attractions=attractions, resturantsBreakfast=resturantsBreakfast, resturantsGeneral= resturantsGeneral, dateNum=dateNum.days, id=user.email())
             bizData.put()
             variables = {
                 'search_attraction': attractions,
-                'search_resturant': resturants
+                'search_resturant_breakfast': resturantsBreakfast,
+                'search_resturant_general': resturantsGeneral,
+
             }
             self.response.write(template.render(variables)) #Renders the schedule Html
         else:
@@ -104,7 +117,7 @@ class ScheduleHandler(webapp2.RequestHandler):
         #fetches attractions from the yelp api
 
 
-
+#Calls the yelp search function which accesses the yelp api and returns attractions. This function then puts those attractions into a list of strings
     def fetch_attractions(self, city, state, radius):
 
         data_source = self.yelp_search_attractions(city, state, radius)
@@ -120,10 +133,10 @@ class ScheduleHandler(webapp2.RequestHandler):
         return attract
         #return attractions
 
-        ##Fetches resturants from the yelp api
-    def fetch_resturants(self, city, state, radius ):
+        ##Fetches breakfast resturants from the yelp api
+    def fetch_resturants_breakfast(self, city, state, radius ):
 
-        data_source = self.yelp_search_resturants(city, state, radius)
+        data_source = self.yelp_search_resturants_breakfast(city, state, radius)
 
         resturants = []
 
@@ -135,8 +148,24 @@ class ScheduleHandler(webapp2.RequestHandler):
         return rest
         #return resturants
 
+
+#Calls on the yelp search to find the lunch and dinner restaurants and puts them into a list of strings
+    def fetch_resturants_general(self, city, state, radius ):
+
+        data_source = self.yelp_search_resturants_general(city, state, radius)
+
+        resturants = []
+
+        #assigns JSON data to a directory for resturants
+        for business in data_source.businesses:
+            resturants.append(business.name)
+
+        rest = self.random_shuffle(resturants)
+        return rest
+
         ##Utilize yelp search to find the resturants and attractions
 
+#See-mongs function that allows us to randomize when a string is printed out
     def random_shuffle(self,x):
         y = [];
         while len(x) > 0:
@@ -145,6 +174,7 @@ class ScheduleHandler(webapp2.RequestHandler):
             del x[index]
         return y
 
+#Finds attractions for the tourist
     def yelp_search_attractions(self, city, state, radius):
 
 
@@ -160,7 +190,6 @@ class ScheduleHandler(webapp2.RequestHandler):
 
         client = Client(auth)
 
-
         params = {
             'category_filter': 'landmarks,museums,beaches',
             'radius_filter': str(int(radius) * 1609),
@@ -171,8 +200,32 @@ class ScheduleHandler(webapp2.RequestHandler):
         data = client.search(cityState, **params)
         return data
 
+#This function finds only breakfast and brunch restaurants
+    def yelp_search_resturants_breakfast(self, city, state, radius):
 
-    def yelp_search_resturants(self, city, state, radius):
+         cityState = city + ',' + state
+
+         auth = Oauth1Authenticator(
+                 consumer_key= 'bM0VPHWh91R0g46amxYbnA',
+                 consumer_secret='l-p2JF_V2BZSsNWGPRT7QywfoGE',
+                 token='rD8K96AXRAxiwI_R_mQwwdMUwb65Ctt_',
+                 token_secret= 'ugp2wQ8Pb4tcV0Qc8pc23MlkvLw'
+                 )
+
+         client = Client(auth)
+         print "My client is authenticated" + str(client)
+         params = {
+                 'category_filter': 'breakfast_brunch',
+                 'radius_filter': str(int(radius) * 1609),
+                 'sort': '0',
+                 'limit':'5'
+                 }
+
+         data = client.search(cityState, **params)
+         return data
+
+#This finds lunch and dinner restaurants
+    def yelp_search_resturants_general(self, city, state, radius):
 
          cityState = city + ',' + state
 
@@ -194,7 +247,6 @@ class ScheduleHandler(webapp2.RequestHandler):
 
          data = client.search(cityState, **params)
          return data
-
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),

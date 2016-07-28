@@ -86,10 +86,33 @@ h1 strong {
     align-content: center;
     position: absolute;
     top: 105%;
+/*
+
+
+
+
+
+
+
+if it doesn't work, try position: relative and top:100%
+
+
+
+
+
+
+*/
     left: 50%;
     transform: translate(-50%, -50%);
 }
+#whatever {
+    background-color: lightgrey;
+    width: 100%;
+    display: block;
+    float: left;
+}
 
+<<<<<<< HEAD
 #intropage{
   width: 99%;
   margin-top: 285px;
@@ -138,8 +161,6 @@ h1 strong {
     opacity: 1.0;
     filter: alpha(opacity=100); /* For IE8 and earlier */
 }
-
-
 /*button editing*/
 .button {
   display: inline-block;

@@ -15,18 +15,20 @@
       </ul>
     <div class ="searchpage">
       <a href= "/intro"><h1>guide<strong>me</strong></h1></a>
-      <h2>Here is your schedule</h3>
       <h3>Attractions</h3>
       {% for attraction in attractions %}
       <p>{{attraction}}</p>
       {%endfor%}
       <br>
-      <h3>Restaurants</h3>
-      <p>
-      {% for resturant in resturants %}
+      <h3>Breakfast Restaurants</h3>
+      {% for resturant in resturantsBreakfast %}
       <p>{{resturant}}</p>
       {%endfor%}
-    </p>
+      <br>
+      <h3>Lunch and Dinner Restaurants</h3>
+      {% for resturant in resturantsGeneral %}
+      <p>{{resturant}}</p>
+      {%endfor%}
     </div>
     <div class= "float_button"><a href="/intro" class="button"><span>Navigation</span></a><a href="/settings" class="button"><span>Search</span></a></div>
 </body>
