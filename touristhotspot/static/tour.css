@@ -81,12 +81,24 @@ h1 strong {
     padding: auto;
     text-align: center;
     align-content: center;
-    position: absolute;
+    position: relative;
     top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+#whatever {
+    background-color: lightgrey;
+    width: 100%;
+    display: block;
+    float: left;
+}
 
+#whatev {
+    background-color: red;
+    width: 50%;
+    display: block;
+    float: left;
+}
 /*button editing*/
 .button {
   display: inline-block;
