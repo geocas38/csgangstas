@@ -45,12 +45,15 @@ class CalendarHandler(webapp2.RequestHandler):
         userRestBreak= userCal.get().resturantsBreakfast
         userRestGeneral= userCal.get().resturantsGeneral
         userDay= userCal.get().dateNum
+        userCity= userCal.get().city
+        userState= userCal.get().state
 
         variables = {
         'attractions': userAttract,
         'resturantsBreakfast' : userRestBreak,
-        'resturantsGeneral': userRestGeneral
-
+        'resturantsGeneral': userRestGeneral,
+        'city': userCity,
+        'state': userState
         }
 
         self.response.write(template.render(variables))
@@ -102,13 +105,14 @@ class ScheduleHandler(webapp2.RequestHandler):
 
         # if User.query().filter(User.user == users.get_current_user().email()):
         #         userCal.delete()
-            bizData = User(user= user.email(), attractions=attractions, resturantsBreakfast=resturantsBreakfast, resturantsGeneral= resturantsGeneral, dateNum=dateNum.days, id=user.email())
+            bizData = User(state = state, city = city, user= user.email(), attractions=attractions, resturantsBreakfast=resturantsBreakfast, resturantsGeneral= resturantsGeneral, dateNum=dateNum.days, id=user.email())
             bizData.put()
             variables = {
                 'search_attraction': attractions,
                 'search_resturant_breakfast': resturantsBreakfast,
                 'search_resturant_general': resturantsGeneral,
-
+                'search_city': city,
+                'search_state': state
             }
             self.response.write(template.render(variables)) #Renders the schedule Html
         else:

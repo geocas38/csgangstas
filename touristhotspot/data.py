@@ -7,3 +7,5 @@ class User(ndb.Model):
     resturantsGeneral= ndb.StringProperty(repeated=True)
     dateNum= ndb.IntegerProperty(required=True)
     user= ndb.StringProperty(required=True)
+    city= ndb.StringProperty(required=True)
+    state= ndb.StringProperty(required=True)
