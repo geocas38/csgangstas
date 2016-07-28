@@ -4,36 +4,45 @@
       <title>Schedule</title>
 </head>
 <body>
-      <ul class="cb-slideshow" style="list-style-type: none;">
+     <ul class="cb-slideshow" style="list-style-type: none;">
           <li style="list-style-type: none;"><span>Image 01</span></li>
           <li style="list-style-type: none;"><span>Image 02</span></li>
           <li style="list-style-type: none;"><span>Image 03</span></li>
           <li style="list-style-type: none;"><span>Image 04</span></li>
           <li style="list-style-type: none;"><span>Image 05</span></li>
       </ul>
-      <div class ="searchpage">
-        <a href= "/intro"><h1>guide<strong>me</strong></h1></a>
-        <h2>Your Schedule</h2>
-        <div align=center>
-          <h3>Attractions</h3>
-              {% for locations in search_attraction %}
-                  <p>  {{locations}} </p>
-              {% endfor %}
-          <br>
-          <h3> Breakfast Restaurants </h3>
-              {% for resturant in search_resturant_breakfast %}
-                  <p>  {{resturant}} </p>
-              {% endfor %}
+
+
+
+
+
+        <div id="title"><a href= "/intro" style= "text-align:center;"><h1>guide<strong>me</strong></h1></a></div>
+          <div id="container">
+        <h1>your<strong>schedule</strong></h1>
+        <div id="leftcol">
+            <h2 style="color: #584744">attractions</h2>
+                {% for locations in search_attraction %}
+                    <p>  {{locations}} </p>
+                {% endfor %}
               <br>
-          <h3>Lunch and Dinner Restaurants</h3>
-              {% for locations in search_attraction_general %}
-                  <p>  {{locations}} </p>
-              {% endfor %}
+        </div>
+        <div id="rightcol">
+            <h2 style="color: #584744">breakfast</h2>
+                {% for resturant in search_resturant_breakfast %}
+                    <p>  {{resturant}} </p>
+                {% endfor %}
+              <br>
+            <h2 style="color: #584744">lunch+dinner</h2>
+                {% for locations in search_attraction_general %}
+                    <p>  {{locations}} </p>
+                {% endfor %}
+        </div>
+  </div>
 
-          <!-- <p> <a href="/settings" class="button"><span>Go Back</span></a></p> -->
 
-      </div>
-    </div>
+
+
+</div>
     <div class= "float_button"><a href="/settings" class="button"><span>Go Back</span></a></div>
 </body>
 </html>
