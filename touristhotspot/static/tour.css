@@ -105,14 +105,7 @@ if it doesn't work, try position: relative and top:100%
     left: 50%;
     transform: translate(-50%, -50%);
 }
-#whatever {
-    background-color: lightgrey;
-    width: 100%;
-    display: block;
-    float: left;
-}
 
-<<<<<<< HEAD
 #intropage{
   width: 99%;
   margin-top: 285px;
