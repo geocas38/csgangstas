@@ -1,4 +1,5 @@
 body {
+    background-color: black;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     color: #584744;
 }
@@ -69,6 +70,7 @@ h1 strong {
 }
 
 /*general css*/
+
 .mainpage{
     text-align: center;
     align-content: center;
@@ -78,14 +80,65 @@ h1 strong {
     transform: translate(-50%, -50%);
 }
 .searchpage{
-    padding: auto;
+    padding: inherit;
+    padding-top: 50px;
     text-align: center;
     align-content: center;
     position: absolute;
-    top: 100%;
+    top: 105%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+#intropage{
+  width: 99%;
+  margin-top: 285px;
+  margin-bottom: 400px;
+  display: block;
+  float: left;
+  text-align: center;
+  align-content: center;
+  position: absolute;
+}
+
+#aboutpage{
+  width: 96%;
+  margin-top: 900px;
+  display: block;
+  float: left;
+  position: absolute;
+  background-color: black;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  padding-left: 30px;
+  padding-right: 20px;
+  padding-top: 30px;
+
+}
+#aboutpage:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+#devpage{
+  width: 29%;
+  margin-top: 1056px;
+  display: block;
+  float: left;
+  position: absolute;
+  background-color: black;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+
+}
+#devpage:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
 
 /*button editing*/
 .button {
@@ -133,6 +186,19 @@ h1 strong {
   bottom: 0px;
   right: 0px;
   padding: 10px;
+}
+
+.scroll {
+    background-color:transparent;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 14px;
+    margin: 4px 2px;
+    position: absolute;
+    float: right;
+    top: 0px;
+    right: 0px;
 }
 
 /*search bars*/
