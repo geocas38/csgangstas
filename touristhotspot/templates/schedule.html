@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
       <link rel="stylesheet" type="text/css" href="../static/tour.css">
@@ -13,7 +14,7 @@
       </ul>
         <div id="title"><a href= "/intro" style= "text-align:center;"><h1>guide<strong>me</strong></h1></a></div>
           <div id="container">
-        <h1>your<strong>schedule</strong> for <strong>{{search_city}}</strong>, <strong>{{search_state}}</strong> </h1>
+        <h1>your<strong>schedule</strong> for {{search_city}}<strong>{{search_state}}</strong></h1>
         <div id="leftcol">
             <h2 style="color: #584744">attractions</h2>
                 {% for locations in ad1p1 %}
@@ -69,11 +70,6 @@
                 {% endfor %}
         </div>
   </div>
-
-
-
-
-</div>
     <div class= "float_button"><a href="/settings" class="button"><span>Go Back</span></a></div>
 </body>
 </html>

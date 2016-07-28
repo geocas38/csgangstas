@@ -35,7 +35,7 @@ class IntroHandler(webapp2.RequestHandler):
 #Allows the user to access their previous schedule
 class CalendarHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('schedule.html')
+        template = jinja_environment.get_template('calendar.html')
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
         #user = User.query().filter().keys
@@ -101,8 +101,8 @@ class ScheduleHandler(webapp2.RequestHandler):
         date_format = "%m/%d/%Y"
 
         #gets variables from the settings html
-        city = self.request.get('city').lower().capitalize()
-        state = self.request.get('state').lower().capitalize()
+        city = self.request.get('city').lower()
+        state = self.request.get('state').lower()
         radius = self.request.get('radius')
         dateStart = datetime.strptime(self.request.get('dateStart'), date_format)
         dateEnd = datetime.strptime(self.request.get('dateEnd'), date_format)

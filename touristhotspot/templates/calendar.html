@@ -13,9 +13,9 @@
         <li style="list-style-type: none;"><span>Image 05</span></li>
       </ul>
       <div id="title"><a href= "/intro" style= "text-align:center;"><h1>guide<strong>me</strong></h1></a></div>
-      <div id="container">
-    <h1>your<strong>schedule</strong></h1>
-    <div id="leftcol">
+      <div id="contain">
+    <h1>your<strong>schedule</strong> for {{search_city}}<strong>{{search_state}}</strong></h1>
+    <div id="col1">
         <h2 style="color: #584744">attractions</h2>
             {% for locations in ad1p1 %}
                 <p>  {{locations}} </p>
@@ -37,7 +37,7 @@
             {% endfor %}
           <br>
     </div>
-    <div id="rightcol">
+    <div id="col2">
         <h2 style="color: #584744">breakfast</h2>
             {% for resturant in rd1b1 %}
                 <p>  {{resturant}} </p>
@@ -49,6 +49,8 @@
                 <p>  {{resturant}} </p>
             {% endfor %}
           <br>
+        </div>
+        <div id="col3">
         <h2 style="color: #584744">lunch+dinner</h2>
             {% for locations in rd1g1 %}
                 <p>  {{locations}} </p>
@@ -69,7 +71,6 @@
                 <p>  {{locations}} </p>
             {% endfor %}
     </div>
-</div>
 </div>
     <div class= "float_button"><a href="/intro" class="button"><span>Navigation</span></a><a href="/settings" class="button"><span>Settings</span></a></div>
 </body>
