@@ -55,7 +55,6 @@ class CalendarHandler(webapp2.RequestHandler):
 
         self.response.write(template.render(variables))
 
-        print userAttract
 #Allows the user to submit a review of a certain place.
 class ReviewHandler(webapp2.RequestHandler):
     def get(self):
@@ -100,9 +99,10 @@ class ScheduleHandler(webapp2.RequestHandler):
 
             #Datastore
 
-            if users.get_current_user().email == user.email():
-                User.user.delete()
-            bizData = User(user= user.email(), attractions=attractions, resturantsBreakfast=resturantsBreakfast, resturantsGeneral= resturantsGeneral, dateNum=dateNum.days)
+
+        # if User.query().filter(User.user == users.get_current_user().email()):
+        #         userCal.delete()
+            bizData = User(user= user.email(), attractions=attractions, resturantsBreakfast=resturantsBreakfast, resturantsGeneral= resturantsGeneral, dateNum=dateNum.days, id=user.email())
             bizData.put()
             variables = {
                 'search_attraction': attractions,
