@@ -38,8 +38,10 @@ class CalendarHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('calendar.html')
         logout = {'logout':users.create_logout_url('/')}
         self.response.out.write(template.render(logout))
-
+        data = User.query().filter(User.user == users.get_current_user().email())
+        print str(data) + '!!!!!!!!!!!!!!!!!!!!!!'
 #pulls list out of Datastore
+
         userCal = User.query().filter(User.user == users.get_current_user().email())
         userAttract= userCal.get().attractions
         userRestBreak= userCal.get().resturantsBreakfast
@@ -55,7 +57,6 @@ class CalendarHandler(webapp2.RequestHandler):
         'city': userCity,
         'state': userState
         }
-
         self.response.write(template.render(variables))
 
 #Allows the user to submit a review of a certain place.
@@ -108,9 +109,21 @@ class ScheduleHandler(webapp2.RequestHandler):
             bizData = User(state = state, city = city, user= user.email(), attractions=attractions, resturantsBreakfast=resturantsBreakfast, resturantsGeneral= resturantsGeneral, dateNum=dateNum.days, id=user.email())
             bizData.put()
             variables = {
-                'search_attraction': attractions,
-                'search_resturant_breakfast': resturantsBreakfast,
-                'search_resturant_general': resturantsGeneral,
+                'ad1p1': attractions[0:3],
+                'ad1p2': attractions[3:6],
+                'ad2p1': attractions[6:9],
+                'ad2p2': attractions[9:12],
+                'ad3p1': attractions[12:15],
+                'ad3p2': attractions[15:18],
+                'rd1b1': resturantsBreakfast[0:1],
+                'rd2b2': resturantsBreakfast[1:2],
+                'rd2b3': resturantsBreakfast[2:3],
+                'rd1g1': resturantsGeneral[0:1],
+                'rd1g2': resturantsGeneral[1:2],
+                'rd2g3': resturantsGeneral[2:3],
+                'rd2g4': resturantsGeneral[3:4],
+                'rd3g5': resturantsGeneral[4:5],
+                'rd3g6': resturantsGeneral[5:6],
                 'search_city': city,
                 'search_state': state
             }
@@ -159,10 +172,12 @@ class ScheduleHandler(webapp2.RequestHandler):
         data_source = self.yelp_search_resturants_general(city, state, radius)
 
         resturants = []
+        #url = []
 
         #assigns JSON data to a directory for resturants
         for business in data_source.businesses:
             resturants.append(business.name)
+            #url.append(business.url)
 
         rest = self.random_shuffle(resturants)
         return rest
