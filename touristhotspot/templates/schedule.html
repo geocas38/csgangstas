@@ -15,16 +15,16 @@
         <div id="title"><a href= "/intro" style= "text-align:center;"><h1>guide<strong>me</strong></h1></a></div>
           <div id="container">
         <h1>your<strong>schedule</strong> for {{search_city}}<strong>{{search_state}}</strong></h1>
-        <div id="leftcol">
-            <h2 style="color: #584744">attractions</h2>
+        <div id="accord" style="margin-top: 0px">
+          <button class="accordion">attractions</button>
+        <div class="panel">
                 {% for locations in ad1p1 %}
                     <p>  {{locations}} </p>
                 {% endfor %}
-                
-              <br>
-        </div>
-        <div id="rightcol">
-            <h2 style="color: #584744">breakfast</h2>
+
+              </div>
+              <button class="accordion">breakfast</button>
+            <div class="panel">
                 {% for resturant in rd1b1 %}
                     <p>  {{resturant}} </p>
                 {% endfor %}
@@ -34,8 +34,9 @@
                 {% for resturant in rd2b3 %}
                     <p>  {{resturant}} </p>
                 {% endfor %}
-              <br>
-            <h2 style="color: #584744">lunch+dinner</h2>
+              </div>
+              <button class="accordion">lunch+dinner</button>
+            <div class="panel">
                 {% for locations in rd1g1 %}
                       {{locations}}
                 {% endfor %}
@@ -55,8 +56,23 @@
                     <p>  {{locations}} </p>
                 {% endfor %}
         </div>
+
+</div>
+
   </div>
-    <div class= "float_button"><a href="/settings" class="button"><span>Go Back</span></a></div>
+    <div class= "float_button"><a href="/settings" class="button"><span>Search Again</span></a><a href="/calendar" class="button"><span>Calendar</span></a></div>
+
+    <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].onclick = function(){
+            this.classList.toggle("active");
+            this.nextElementSibling.classList.toggle("show");
+      }
+    }
+    </script>
 </body>
 </html>
 

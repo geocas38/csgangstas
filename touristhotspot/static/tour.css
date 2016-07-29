@@ -7,16 +7,6 @@ body {
 * {
     box-sizing: border-box;
 }
-.header {
-    border: 1px solid red;
-    padding: 15px;
-}
-.destination {
-    width: 75%;
-    float: left;
-    padding: 15px;
-    border: 1px solid orange;
-}
 
 h1 {
     color: #FFF;
@@ -90,32 +80,6 @@ h1 strong {
     align-content: center;
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.searchpage{
-    padding: inherit;
-    padding-top: 50px;
-    text-align: center;
-    align-content: center;
-    position: relative;
-    top: 70%;
-/*
-
-
-
-
-
-
-
-if it doesn't work, try position: relative and top:100%
-
-
-
-
-
-
-*/
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -216,92 +180,6 @@ if it doesn't work, try position: relative and top:100%
     filter: alpha(opacity=80);
 }
 
-#leftcol{
-  width: 46%;
-  display: inline-block;
-  float: left;
-  position: absolute;
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-bottom: 28px;
-  margin-left: -25px;
-  background-color: black;
-  z-index: 1;
-  color: white;
-}
-#rightcol{
-  width: 54%;
-  display: inline-block;;
-  float: left;
-  position: absolute;
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-bottom: 28px;
-  margin-left: 612px;
-  background-color: black;
-  z-index: 1;
-  color: white;
-}
-
-#contain{
-  width: 96%;
-  display: block;
-  float: left;
-  position: absolute;
-  background-color: black;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  margin-top: 110px;
-  padding-left: 25px;
-  padding-right: 25px;
-  z-index: 1;
-
-}
-#contain:hover {
-    opacity: 0.8;
-    filter: alpha(opacity=80);
-}
-
-#col1{
-  width: 20%;
-  display: inline-block;
-  float: left;
-  position: absolute;
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-bottom: 28px;
-  margin-left: -25px;
-  background-color: black;
-  z-index: 1;
-  color: white;
-}
-#col2{
-  width: 20%;
-  display: inline-block;;
-  float: left;
-  position: absolute;
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-bottom: 28px;
-  margin-left: 604px;
-  background-color: black;
-  z-index: 1;
-  color: white;
-}
-#col3{
-  width: 20%;
-  display: inline-block;;
-  float: left;
-  position: absolute;
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-bottom: 28px;
-  margin-left: 1000px;
-  background-color: black;
-  z-index: 1;
-  color: white;
-}
-
 /*button editing*/
 .button {
   display: inline-block;
@@ -352,11 +230,13 @@ if it doesn't work, try position: relative and top:100%
 
 .scroll {
     background-color:transparent;
-    border: none;
+    border: solid;
+    border-radius: 100px;
+    border-width: 1px;
     color: white;
     padding: 15px 32px;
     font-size: 14px;
-    margin: 4px 2px;
+    margin: 25px;
     position: absolute;
     float: right;
     top: 0px;
@@ -437,7 +317,7 @@ div.panel {
 
 div.panel.show {
     opacity: 0.8;
-    max-height: 500px;
+    max-height: 100%;
 }
 
  /*
