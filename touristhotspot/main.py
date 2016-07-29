@@ -177,9 +177,9 @@ class ScheduleHandler(webapp2.RequestHandler):
             resturants.append(business.name)
 
         rest = self.random_shuffle(resturants)
+        print str(rest) + "$$$$$$$$$$$$$$$$$$$$$$$$$$"
         return rest
         #return resturants
-
 
 #Calls on the yelp search to find the lunch and dinner restaurants and puts them into a list of strings
     def fetch_resturants_general(self, city, state, radius ):
@@ -191,7 +191,7 @@ class ScheduleHandler(webapp2.RequestHandler):
 
         #assigns JSON data to a directory for resturants
         for business in data_source.businesses:
-            resturants.append(business.name)
+            resturants.append(json.dumps([business.name, business.url]))
             #url.append(business.url)
 
         rest = self.random_shuffle(resturants)
