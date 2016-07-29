@@ -11,6 +11,8 @@ import random
 from datetime import datetime
 from data import User
 
+# json.dumps([business.name, business.url])
+# str('<href src= ') + business.url + str('>') + business.name + str('</href>')
 
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
@@ -35,9 +37,9 @@ class IntroHandler(webapp2.RequestHandler):
 #Allows the user to access their previous schedule
 class CalendarHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('schedule.html')
+        template = jinja_environment.get_template('calendar.html')
         logout = {'logout':users.create_logout_url('/')}
-        self.response.out.write(template.render(logout))
+        #self.response.out.write(template.render(logout))
         #user = User.query().filter().keys
         #print user
 #pulls list out of Datastore
@@ -101,8 +103,8 @@ class ScheduleHandler(webapp2.RequestHandler):
         date_format = "%m/%d/%Y"
 
         #gets variables from the settings html
-        city = self.request.get('city').lower().capitalize()
-        state = self.request.get('state').lower().capitalize()
+        city = self.request.get('city').lower()
+        state = self.request.get('state').lower()
         radius = self.request.get('radius')
         dateStart = datetime.strptime(self.request.get('dateStart'), date_format)
         dateEnd = datetime.strptime(self.request.get('dateEnd'), date_format)
@@ -117,19 +119,13 @@ class ScheduleHandler(webapp2.RequestHandler):
             resturantsBreakfast = self.fetch_resturants_breakfast(city, state, radius)
             resturantsGeneral = self.fetch_resturants_general(city, state, radius)
 
-            #Datastore
 
         # if User.query().filter(User.user == users.get_current_user().email()):
         #         userCal.delete()
             bizData = User(state = state, city = city, user= user.email(), attractions=attractions, resturantsBreakfast=resturantsBreakfast, resturantsGeneral= resturantsGeneral, dateNum=dateNum.days, id=user.email())
             #bizData.put()
             variables = {
-                'ad1p1': attractions[0:3],
-                'ad1p2': attractions[3:6],
-                'ad2p1': attractions[6:9],
-                'ad2p2': attractions[9:12],
-                'ad3p1': attractions[12:15],
-                'ad3p2': attractions[15:18],
+                'ad1p1': attractions,
                 'rd1b1': resturantsBreakfast[0:1],
                 'rd2b2': resturantsBreakfast[1:2],
                 'rd2b3': resturantsBreakfast[2:3],
@@ -152,14 +148,14 @@ class ScheduleHandler(webapp2.RequestHandler):
 #Calls the yelp search function which accesses the yelp api and returns attractions. This function then puts those attractions into a list of strings
     def fetch_attractions(self, city, state, radius):
 
-        data_source = self.yelp_search_attractions(city, state, radius)
-        results = data_source
+        results = self.yelp_search_attractions(city, state, radius)
 
         attractions = []
 
+
         #assisgns JSON data to a directory for attractions
         for business in results.businesses:
-            attractions.append(business.name)
+            attractions.append(self.chucks_function(business.name, business.url, business.image_url))
 
         attract = self.random_shuffle(attractions)
         return attract
@@ -174,10 +170,9 @@ class ScheduleHandler(webapp2.RequestHandler):
 
         #assigns JSON data to a directory for resturants
         for business in data_source.businesses:
-            resturants.append(business.name)
+            resturants.append(self.chucks_function(business.name, business.url, business.image_url))
 
         rest = self.random_shuffle(resturants)
-        print str(rest) + "$$$$$$$$$$$$$$$$$$$$$$$$$$"
         return rest
         #return resturants
 
@@ -191,13 +186,18 @@ class ScheduleHandler(webapp2.RequestHandler):
 
         #assigns JSON data to a directory for resturants
         for business in data_source.businesses:
-            resturants.append(json.dumps([business.name, business.url]))
+            resturants.append(self.chucks_function(business.name, business.url, business.image_url))
             #url.append(business.url)
 
         rest = self.random_shuffle(resturants)
         return rest
 
         ##Utilize yelp search to find the resturants and attractions
+
+    def chucks_function(self, name, url, image):
+        url_string = '<a href="'+ str(url) + '">' + str(name) + '</a> <br>'
+
+        return url_string
 
 #See-mongs function that allows us to randomize when a string is printed out
     def random_shuffle(self,x):

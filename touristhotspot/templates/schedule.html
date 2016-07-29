@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
       <link rel="stylesheet" type="text/css" href="../static/tour.css">
@@ -13,27 +14,13 @@
       </ul>
         <div id="title"><a href= "/intro" style= "text-align:center;"><h1>guide<strong>me</strong></h1></a></div>
           <div id="container">
-        <h1>your<strong>schedule</strong> for <strong>{{search_city}}</strong>, <strong>{{search_state}}</strong> </h1>
+        <h1>your<strong>schedule</strong> for {{search_city}}<strong>{{search_state}}</strong></h1>
         <div id="leftcol">
             <h2 style="color: #584744">attractions</h2>
                 {% for locations in ad1p1 %}
                     <p>  {{locations}} </p>
                 {% endfor %}
-                {% for locations in ad1p2 %}
-                    <p>  {{locations}} </p>
-                {% endfor %}
-                {% for locations in ad2p1 %}
-                    <p>  {{locations}} </p>
-                {% endfor %}
-                {% for locations in ad2p2 %}
-                    <p>  {{locations}} </p>
-                {% endfor %}
-                {% for locations in ad3p1 %}
-                    <p>  {{locations}} </p>
-                {% endfor %}
-                {% for locations in ad3p2 %}
-                    <p>  {{locations}} </p>
-                {% endfor %}
+                
               <br>
         </div>
         <div id="rightcol">
@@ -50,7 +37,7 @@
               <br>
             <h2 style="color: #584744">lunch+dinner</h2>
                 {% for locations in rd1g1 %}
-                    <p>  {{locations}} </p>
+                      {{locations}}
                 {% endfor %}
                 {% for locations in rd1g2 %}
                     <p>  {{locations}} </p>
@@ -69,11 +56,6 @@
                 {% endfor %}
         </div>
   </div>
-
-
-
-
-</div>
     <div class= "float_button"><a href="/settings" class="button"><span>Go Back</span></a></div>
 </body>
 </html>
