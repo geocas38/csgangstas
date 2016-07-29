@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../static/tour.css">
-    <title>Please Log In</title>
+    <title>Calendar</title>
 </head>
 <body>
       <ul class="cb-slideshow" style="list-style-type: none;">
@@ -13,10 +13,11 @@
         <li style="list-style-type: none;"><span>Image 05</span></li>
       </ul>
       <div id="title"><a href= "/intro" style= "text-align:center;"><h1>guide<strong>me</strong></h1></a></div>
-      <div id="contain">
-    <h1>your<strong>schedule</strong> for {{search_city}}<strong>{{search_state}}</strong></h1>
-    <div id="col1">
-        <h2 style="color: #584744">day one</h2>
+      <div id="container">
+    <h1>your<strong>calendar</strong> for {{search_city}}<strong>{{search_state}}</strong></h1>
+    <div id="accord" style="margin-top: 0px">
+      <button class="accordion">day one</button>
+    <div class="panel">
           <h3>breakfast</h3>
             {% for resturant in rd1b1 %}
                 <p>  {{resturant}} </p>
@@ -33,13 +34,14 @@
             {% for locations in ad1p2 %}
                 <p>  {{locations}} </p>
             {% endfor %}
+          <h3>dinner</h3>
             {% for locations in rd1g2 %}
                 <p>  {{locations}} </p>
             {% endfor %}
           <br>
     </div>
-    <div id="col2">
-      <h2 style="color: #584744">day two</h2>
+    <button class="accordion">day two</button>
+  <div class="panel">
           <h3>breakfast</h3>
           {% for resturant in rd2b2 %}
               <p>  {{resturant}} </p>
@@ -61,21 +63,25 @@
               <p>  {{locations}} </p>
           {% endfor %}
         <br>
-      </div>
-        <div id="col3">
-        <h2 style="color: #584744">day three</h2>
+      </div>  <button class="accordion">day three</button>
+      <div class="panel">
+                <h3>breakfast</h3>
             {% for resturant in rd2b3 %}
                 <p>  {{resturant}} </p>
             {% endfor %}
+            <h3>places</h3>
             {% for locations in ad3p1 %}
                 <p>  {{locations}} </p>
             {% endfor %}
+          <h3>lunch</h3>
             {% for locations in rd3g5 %}
                 <p>  {{locations}} </p>
             {% endfor %}
+          <h3>more places</h3>
             {% for locations in ad3p2 %}
                 <p>  {{locations}} </p>
             {% endfor %}
+          <h3>dinner</h3>
             {% for locations in rd3g6 %}
                 <p>  {{locations}} </p>
             {% endfor %}
@@ -87,6 +93,22 @@
 
     </div>
 </div>
-    <div class= "float_button"><a href="/intro" class="button"><span>Navigation</span></a><a href="/settings" class="button"><span>Settings</span></a></div>
+</div>
+    <div class= "float_button"><a href="/intro" class="button"><span>Navigation</span></a><a href="/settings" class="button"><span>Search</span></a></div>
+
+
+    <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].onclick = function(){
+            this.classList.toggle("active");
+            this.nextElementSibling.classList.toggle("show");
+      }
+    }
+    </script>
+
+
 </body>
 </html>
