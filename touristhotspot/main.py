@@ -37,7 +37,7 @@ class CalendarHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('calendar.html')
         logout = {'logout':users.create_logout_url('/')}
-        self.response.out.write(template.render(logout))
+        #self.response.out.write(template.render(logout))
         #user = User.query().filter().keys
         #print user
 #pulls list out of Datastore

@@ -237,7 +237,7 @@ if it doesn't work, try position: relative and top:100%
   padding-left: 28px;
   padding-right: 28px;
   padding-bottom: 28px;
-  margin-left: 604px;
+  margin-left: 612px;
   background-color: black;
   z-index: 1;
   color: white;
@@ -263,7 +263,7 @@ if it doesn't work, try position: relative and top:100%
 }
 
 #col1{
-  width: 46%;
+  width: 20%;
   display: inline-block;
   float: left;
   position: absolute;
@@ -276,7 +276,7 @@ if it doesn't work, try position: relative and top:100%
   color: white;
 }
 #col2{
-  width: 54%;
+  width: 20%;
   display: inline-block;;
   float: left;
   position: absolute;
@@ -289,14 +289,14 @@ if it doesn't work, try position: relative and top:100%
   color: white;
 }
 #col3{
-  width: 54%;
+  width: 20%;
   display: inline-block;;
   float: left;
   position: absolute;
   padding-left: 28px;
   padding-right: 28px;
   padding-bottom: 28px;
-  margin-left: 604px;
+  margin-left: 1000px;
   background-color: black;
   z-index: 1;
   color: white;

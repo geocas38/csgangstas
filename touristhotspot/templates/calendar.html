@@ -16,60 +16,75 @@
       <div id="contain">
     <h1>your<strong>schedule</strong> for {{search_city}}<strong>{{search_state}}</strong></h1>
     <div id="col1">
-        <h2 style="color: #584744">attractions</h2>
-            {% for locations in ad1p1 %}
-                <p>  {{locations}} </p>
-            {% endfor %}
-            {% for locations in ad1p2 %}
-                <p>  {{locations}} </p>
-            {% endfor %}
-            {% for locations in ad2p1 %}
-                <p>  {{locations}} </p>
-            {% endfor %}
-            {% for locations in ad2p2 %}
-                <p>  {{locations}} </p>
-            {% endfor %}
-            {% for locations in ad3p1 %}
-                <p>  {{locations}} </p>
-            {% endfor %}
-            {% for locations in ad3p2 %}
-                <p>  {{locations}} </p>
-            {% endfor %}
-          <br>
-    </div>
-    <div id="col2">
-        <h2 style="color: #584744">breakfast</h2>
+        <h2 style="color: #584744">day one</h2>
+          <h3>breakfast</h3>
             {% for resturant in rd1b1 %}
                 <p>  {{resturant}} </p>
             {% endfor %}
-            {% for resturant in rd2b2 %}
-                <p>  {{resturant}} </p>
+          <h3>places</h3>
+            {% for locations in ad1p1 %}
+                <p>  {{locations}} </p>
             {% endfor %}
-            {% for resturant in rd2b3 %}
-                <p>  {{resturant}} </p>
-            {% endfor %}
-          <br>
-        </div>
-        <div id="col3">
-        <h2 style="color: #584744">lunch+dinner</h2>
+          <h3>lunch</h3>
             {% for locations in rd1g1 %}
+                <p>  {{locations}} </p>
+            {% endfor %}
+          <h3>more places</h3>
+            {% for locations in ad1p2 %}
                 <p>  {{locations}} </p>
             {% endfor %}
             {% for locations in rd1g2 %}
                 <p>  {{locations}} </p>
             {% endfor %}
-            {% for locations in rd2g3 %}
-                <p>  {{locations}} </p>
+          <br>
+    </div>
+    <div id="col2">
+      <h2 style="color: #584744">day two</h2>
+          <h3>breakfast</h3>
+          {% for resturant in rd2b2 %}
+              <p>  {{resturant}} </p>
+          {% endfor %}
+          <h3>places</h3>
+          {% for locations in ad2p1 %}
+              <p>  {{locations}} </p>
+          {% endfor %}
+          <h3>lunch</h3>
+          {% for locations in rd2g3 %}
+              <p>  {{locations}} </p>
+          {% endfor %}
+          <h3>more places</h3>
+          {% for locations in ad2p2 %}
+              <p>  {{locations}} </p>
+          {% endfor %}
+          <h3>dinner</h3>
+          {% for locations in rd2g4 %}
+              <p>  {{locations}} </p>
+          {% endfor %}
+        <br>
+      </div>
+        <div id="col3">
+        <h2 style="color: #584744">day three</h2>
+            {% for resturant in rd2b3 %}
+                <p>  {{resturant}} </p>
             {% endfor %}
-            {% for locations in rd2g4 %}
+            {% for locations in ad3p1 %}
                 <p>  {{locations}} </p>
             {% endfor %}
             {% for locations in rd3g5 %}
                 <p>  {{locations}} </p>
             {% endfor %}
+            {% for locations in ad3p2 %}
+                <p>  {{locations}} </p>
+            {% endfor %}
             {% for locations in rd3g6 %}
                 <p>  {{locations}} </p>
             {% endfor %}
+
+
+
+
+
+
     </div>
 </div>
     <div class= "float_button"><a href="/intro" class="button"><span>Navigation</span></a><a href="/settings" class="button"><span>Settings</span></a></div>
