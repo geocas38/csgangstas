@@ -180,6 +180,92 @@ h1 strong {
     filter: alpha(opacity=80);
 }
 
+<<<<<<< HEAD
+#leftcol{
+  width: 46%;
+  display: inline-block;
+  float: left;
+  position: absolute;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-bottom: 28px;
+  margin-left: -25px;
+  background-color: black;
+  z-index: 1;
+  color: white;
+}
+#rightcol{
+  width: 54%;
+  display: inline-block;;
+  float: left;
+  position: absolute;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-bottom: 28px;
+  margin-left: 612px;
+  background-color: black;
+  z-index: 1;
+  color: white;
+}
+
+#contain{
+  width: 96%;
+  display: block;
+  float: left;
+  position: absolute;
+  background-color: black;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  margin-top: 110px;
+  padding-left: 25px;
+  padding-right: 25px;
+  z-index: 1;
+
+}
+#contain:hover {
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+
+#col1{
+  width: 30%;
+  display: inline-block;
+  float: left;
+  position: absolute;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-bottom: 28px;
+  margin-left: -25px;
+  background-color: black;
+  z-index: 1;
+  color: white;
+}
+#col2{
+  width: 30%;
+  display: inline-block;;
+  float: left;
+  position: absolute;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-bottom: 28px;
+  margin-left: 604px;
+  background-color: black;
+  z-index: 1;
+  color: white;
+}
+#col3{
+  width: 30%;
+  display: inline-block;;
+  float: left;
+  position: absolute;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-bottom: 28px;
+  margin-left: 604px;
+  background-color: black;
+  z-index: 1;
+  color: white;
+}
 /*button editing*/
 .button {
   display: inline-block;
